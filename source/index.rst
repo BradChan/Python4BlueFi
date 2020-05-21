@@ -8,7 +8,7 @@ Welcome to Python4BlueFi documentation!
 
 .. toctree::
    :maxdepth: 1
-   :caption: API and Usage
+   :caption: API and Usage for BlueFI
 
 .. toctree::
     :caption: Python4BlueFi
