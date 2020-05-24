@@ -18,7 +18,7 @@ http/https和MQTT等物联网(IoT)应用协议。
   BlueFi出厂时，网络协处理器已经具有网络事务处理的固件，用户无需对ESP32编程
 
 .. image:: /../_static/images/BlueFi_fore.png
-  :scale: 30%
+  :scale: 10%
   :align: center
 
 BlueFi技术参数
@@ -91,36 +91,57 @@ BlueFi技术参数
 软件特性:
 
   - 支持Scratch图形化编程语言
+
     - 出厂时默认支持的编程语言
     - 在线编程模式, Scratch3.0环境
     - 打开Chrome浏览器即开始编程，无需安装任何软件 
+
       - 易造云平台
       - https://www.ezaoyun.com/
     - 在线下载(保存code.py文件到/CIRCUITPY/磁盘即为下载)
     - 升级固件(拖放文件的操作模式)
+
       - 下载最新版固件(点击此处下载文件)
       - 双击Reset按钮, 等待所有彩灯变为绿色, 出现BLUEFIBOOT磁盘
       - 将固件文件拖放到BLUEFIBOOT磁盘
   
   - 支持Python脚本编程语言
+
     - 出厂时默认支持的编程语言
     - 推荐使用开源的MU作为软件工具
-      - MU网址
-      - https://codewith.mu/
+
+      - MU网址(https://codewith.mu)
+      - MU向导(https://codewith.mu/en/tutorials/)
+
     - Pycom， Visual Studio等代码编程软件
     - 使用任意文本编辑器编写py代码, 保存为code.py文件, 拖放到/CIRCUITPY/即为下载
     - 升级固件(拖放文件的操作模式)
+
       - 下载最新版固件(点击此处下载文件)
       - 双击Reset按钮, 等待所有彩灯变为绿色, 出现BLUEFIBOOT磁盘
       - 将固件文件拖放到BLUEFIBOOT磁盘
   
   - 支持C/C++编程语言
+
     - 双击Reset按钮, 出现BLUEFIBOOT磁盘, 即进入该模式
     - 推荐使用Arduino IDE作为软件工具
-      - Arduino IDE的下载和使用说明
-      - https://www.arduino.cc 
+
+      - Arduino IDE下载(https://www.arduino.cc)
+
     - 点击此处进入详细的编程向导
 
+  - 易于更新的Bootloader
+
+    - 拖放文件即可更新Bootloader
+
+      - 下载最新版Bootloader(点击此处下载文件)
+      - 双击Reset按钮, 等待所有彩灯变为绿色, 出现BLUEFIBOOT磁盘
+      - 将Bootloader文件拖放到BLUEFIBOOT磁盘即可
+
+
+.. Attention::
+
+  更新BlueFi的Bootloader之后，必须重新固件!
 
 
 

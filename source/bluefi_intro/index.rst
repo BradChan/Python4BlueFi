@@ -7,7 +7,6 @@ Bluefi简介
 
    introduction.rst
    onboard_resource.rst
-   vsmicrobit.rst
    if2otherboard.rst
    language_support.rst
 
