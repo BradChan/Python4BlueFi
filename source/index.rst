@@ -10,13 +10,17 @@ BlueFi是一种硬件接口完全兼容microbit(源自BBC)的全新单板机，�
 板载BlueTooth 5和WiFi无线接口，满足AI边缘计算需求。支持Scratch图形化编程语言、Python脚本编程语言，以及C/C++编程语言。采用“拖放文件即下载程序”的操作模式，
 使用时不依赖任何特定软件环境。
 
-.. image::  /../_static/images/BlueFi_fore.png
-  :scale: 30%
+.. image::  _static/images/BlueFi_fore.png
+  :scale: 50%
   :align: center
 
-.. image::  /../_static/images/Bluefi_back.png
-  :scale: 30%
+(正面)
+
+.. image::  _static/images/Bluefi_back.png
+  :scale: 50%
   :align: center
+
+(背面)
 
 ---------
 

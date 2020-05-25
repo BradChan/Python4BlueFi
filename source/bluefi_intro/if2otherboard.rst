@@ -6,20 +6,20 @@ microbit单板机以其简单易用为特色，支持图形化语言的在线编
 全球很多开源社区都有丰富的microbit周边资源，包括各种扩展板、小车底盘、机器人功能板等硬件资源。全新设计的BlueFi在计算性能和网络连通性等
 方面远超micrbit，但仍保留microbit硬件接口，目的是借助于丰富的microbit周边快速搭建高性能的AI边缘计算应用原型。
 
-.. image:: /../_static/images/Bluefi_appexample1.jpg
-  :scale: 10%
+.. image::  ../_static/images/bluefi_intro/Bluefi_appexample1.jpg
+  :scale: 20%
   :align: center
 
-.. image:: /../_static/images/Bluefi_appexample2.jpg
-  :scale: 10%
+.. image::  ../_static/images/bluefi_intro/Bluefi_appexample2.jpg
+  :scale: 20%
   :align: center
 
 由于microbit的40-Pin金手指拓展接口上定义了19个可编程I/O引脚，每一个引脚都可以定义为DI/DO/PWM等模式，部分引脚具有模拟输入功能，部分引脚
 还可以用作I2C/SPI/UART通讯接口，使用microbit专用的40-Pin拓展插槽连接器，利用这些引脚可以实现遥控手柄、彩灯条/阵列、传感器、按钮、喇叭
 等I/O扩展板。据不完全统计，全球microbit周边多达300+种。
 
-.. image:: /../_static/images/microbit-shield.jpg
-  :scale: 10%
+.. image::  ../_static/images/bluefi_intro/microbit-shield.jpg
+  :scale: 40%
   :align: center
 
 1. 拔掉microbit直接插入BlueFi？

@@ -5,11 +5,13 @@
 将BlueFi插入自己的电脑时，BlueFi是一个“移动磁盘”。根据BlueFi的工作状态，这个可移动磁盘使用两个固定的名称：BLUEFIBOOT和
 CIRCUITPY。
 
+
 .. Attention:
 
   - BlueFi使用常用的Micro USB数据线与电脑连接
   - 很多设备使用Micro USB接口供电。因此市面上很多USB电源线，他们并不是数据线！此类电源线无法让BlueFi与电脑连接
   - 验证BlueFi是否与电脑可靠连接的方法就是，检查电脑的资源管理器是否出现BLUEFIBOOT或CIRCUITPY磁盘
+
 
 我们会在以下几种情况使用BlueFi磁盘：
 
@@ -35,6 +37,7 @@ CIRCUITPY。
 
   如果系统未按预期出现相应的磁盘，请首先检查USB数据线和连接的可靠性。如果BlueFi的电源指示灯(BlueFi正面的左上角的绿色LED)
   都不能正常工作，请更换到其他USB端口，电脑的某些USB端口或许已经不可靠的或损坏！
+
 
 1. BlueFi与MU编辑器成功连接时
 ----------------------------------
