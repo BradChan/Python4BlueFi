@@ -54,7 +54,7 @@ MU软件包。
 1) 安装到Windows电脑
 
 .. image:: /../_static/images/bluefi_setup/windows_mu_installer.gif
-  :scale: 80%
+  :scale: 100%
   :align: center
 
 针对Windows系统的详细安装向导请遵照MU官网的说明 https://codewith.mu/en/howto/1.0/install_windows
@@ -65,7 +65,7 @@ macOS电脑的MU安装包的文件名为xxx.dmg，具体名称取决于你下载
 “mu-editor”可卸载磁盘，打开这个磁盘，你将会看到：
 
 .. image:: /../_static/images/bluefi_setup/macos_installer.png
-  :scale: 20%
+  :scale: 10%
   :align: center
 
 将"mu-editor"图标拖放至"Application"文件夹即可。熟悉macOS电脑的人都知道，Apple推荐使用自己的App Store安装App。显然，这样安装
