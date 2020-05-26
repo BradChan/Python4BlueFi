@@ -12,14 +12,14 @@ BlueFi是一种硬件接口完全兼容microbit(源自BBC)的全新单板机，�
 
 
 .. image::  _static/images/BlueFi_fore.png
-  :scale: 50%
+  :scale: 40%
   :align: center
 
 (正面)
 
 
 .. image::  _static/images/Bluefi_back.png
-  :scale: 50%
+  :scale: 40%
   :align: center
 
 (背面)
