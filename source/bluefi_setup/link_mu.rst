@@ -107,11 +107,22 @@ CIECUITPY，你的Python程序文件只需要拖放到CIRCUITPY磁盘即可，�
 
   1) BlueFi与电脑连接后，未出现名为“CIRCUITPY”的磁盘，出现名为"NONAME"的磁盘
 
-    电脑的磁盘名称或卷标是可以修改的，你可以将"NONAME"卷标名称修改为"CIRCUITPY"即可。
+    - 电脑的磁盘名称或卷标是可以修改的，你可以将"NONAME"卷标名称修改为"CIRCUITPY"即可。
 
-  2) BlueFi与电脑连接后，未出现任何(增加的可移动)磁盘
+  2) BlueFi与电脑连接后，未出现名为“CIRCUITPY”的磁盘，出现名为"BLUEFIBOOT"的磁盘
 
-    
+    - 如果连续按下BlueFi的复位按钮，BlueFi将自动进入Bootloader模式。拔掉USB数据线，重新插入电脑即可。
 
+  3) BlueFi与电脑连接后，未出现任何(增加的可移动)磁盘
 
+    - 首先确保BlueFi正常启动，左上角绿色电源指示灯亮，而且LCD屏幕有字符或其他信息。如果BlueFi没有正常供电和正常启动，不会出现CIRCUITPY磁盘，线检查供电是否正常。
+    - 首先检查使用的USB是否是数据线，市面上很多USB供电线，并不是USB数据线。更换为USB数据线即可。
+    - 更换电脑的USB端口，确保USB端口未损坏，且接触良好。
+  
+  4) BlueFi需要专用驱动程序吗？
+
+    - Windonws7及之后的系统都无需驱动
+    - macOS和Linux系统无需驱动
+
+  
 
