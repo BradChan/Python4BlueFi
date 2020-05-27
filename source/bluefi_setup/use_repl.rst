@@ -63,7 +63,7 @@ MU编辑器的REPL使用控制台实现人-机交互(你输入一个脚本程序
 如果你想了解BlueFi支持多少种内建的(built-in)模块，在“>>”提示符后面输入“help("modules")”，你将会看到以下的执行结果输出：
 
 .. image:: /../_static/images/bluefi_setup/help_modules.jpg
-  :scale: 10%
+  :scale: 4%
   :align: center
 
 你是否发现前面用过的“random”在其中吗？
@@ -77,18 +77,46 @@ MU编辑器的REPL使用控制台实现人-机交互(你输入一个脚本程序
 的所有接口都列举出来，如下图所示：
 
 .. image:: /../_static/images/bluefi_setup/help_random.jpg
-  :scale: 10%
+  :scale: 4%
   :align: center
 
 
 5. REPL的妙用3——dir(random)
 -------------------------------------
 
+在导入"random"模块之后，使用“help(random)”语句将会给我们列举random模块所支持的全部类(class)、变量和方法(function)。
+仍以random模块为例，使用"dir(random)"将以列表(list)格式显示出random模块所支持的类、变量和方法名称。如下图所示:
+
+.. image:: /../_static/images/bluefi_setup/dir_random.jpg
+  :scale: 4%
+  :align: center
 
 
 6. REPL的妙用4——random. (+tab键)
 -------------------------------------
 
+如果你曾经使用过一些支持面向对象编程的编辑软件，在编辑程序时，“输入一个对象名称和点，然后按Tab键，编辑软件会立即把这个对象的所有接口方法都
+列举出来”这种辅助式交互可以让程序员不必记住一个对象的全部接口，用到时输入“ClassName.”并按Tab键，编辑软件会帮你列出所有方法，选择即可。
+Python的REPL也具备这一辅助功能。以random模块为例，导入random模块后，再“>>”提示符后面输入“random.”并按Tab键，REPL会把random模块
+支持的所有类、变量和方法全部列出来。
+
+使用BlueFi学习Python编程，你不必记住每一个模块的全部接口，当你需要了解一个模块有哪些具体接口(包括类、变量、方法等)时，在串口控制台
+按"Ctrl+C"终止当前正在执行的程序，进入REPL模式，输入"import modulename"并按回车，然后输入“modulename.”并按Tab键，你将看到
+这个模块所支持的接口。以random模块为例，如下图：
+
+.. image:: /../_static/images/bluefi_setup/tab_random.jpg
+  :scale: 4%
+  :align: center
+
+
+.. Tip::
+
+  - 进入REPL的方法：
+     在串口控制台(鼠标停留在控制台窗口，点击鼠标左键)，同时按下“Ctrl+C”键，即可进入REPL模式，出现REPL“>>”提示符
+
+
+  - 退出REPLD的方法：
+     在串口控制台(鼠标停留在控制台窗口，点击鼠标左键)，同时按下“Ctrl+D”键，即可退出REPL模式，BlueFi立即重新开始执行code.py或main.py程序
 
 
 
