@@ -119,6 +119,46 @@ NeoPixel类中定义一个对应的接口(函数)，使用时只需调用对应�
 每次移动2位或更多位吗？
 
 
+用RGB像素灯珠画柱状图
+------------------------------------
+
+BlueFi上的并排5个彩灯可以实现很多种光效，最酷的应该是动态柱状图指示变量的变化，不仅直观而且彩色光柱让人印象深刻。如下示例：
+
+.. code-block::  python
+  :linenos:
+
+    import time
+    from hiibot_bluefi.basedio import NeoPixel
+    from hiibot_bluefi.soundio import SoundIn
+    pixels = NeoPixel()
+    pixels.brightness = 0.2
+    mic = SoundIn()
+    vmin = mic.sound_level
+    vmax = vmin+500
+    while True:
+        pixels.drawPillar(mic.sound_level, vmin, vmax)
+        time.sleep(0.01)
+
+当你把本示例程序保存为/CIRCUITPY/code.py文件后，播放节奏明显的音乐、敲桌子等方式制造点很有节奏的动静，你会发现BlueFi灯珠上
+彩色光柱几乎完全与节奏同步跳动，效果非常有趣。
+
+  示例代码分析：
+
+    - 第1行，导入一个Python内建的模块“time”
+    - 第2行，从“/CIRCUITPY/lib/hiibot_bluefi/basedio.py”模块中导入一个名叫“NeoPixel”的类
+    - 第3行，从“/CIRCUITPY/lib/hiibot_bluefi/soundio.py”模块中导入一个名叫“SoundIn”的类
+    - 第3行，将导入的“NeoPixel”类实例化为一个实体对象，名叫“pixels”
+    - 第4行，设置pixels的brightness属性(即RGB像素彩灯的整体亮度)为0.2，合理取值范围：0.05(亮度最小)~1.0(亮度最大)
+    - 第3行，将导入的“SoundIn”类实例化为一个实体对象，名叫“mic”
+    - 第5行，定义一个变量名叫vmin，并使用mic的属性值sound_level(麦克风感知到的声音高低)作为初始值
+    - 第6行，定义一个变量名叫vmax，并使用“vmin+500”作为初始值
+    - 第7行，开始一个无穷循环的程序块
+    - 第8行(无穷循环程序块的第1行)，调用pixels的函数drawPillar，使用mic的属性值(麦克风感知到的声音高低)作为变量画柱状图，且最小值为vmain和最大值为vmax
+    - 第9行(无穷循环程序块的第4行)，执行time的sleep方法，参数为0.01秒，即系统空操作10毫秒
+
+关于BlueFi的SoundIn类和数字麦克风传感器的用法，后续将会详细说明，此处只是使用SoundIn类的属性值(麦克风感知到的声音高低).
+
+
 需要更多个RGB像素灯珠
 ------------------------------------
 
@@ -185,7 +225,7 @@ NeoPixel类的变量numPixels。
     - 变量赋值
     - 变量自增/自减
     - 逻辑判断和逻辑程序块
-    - 本节中，你总计完成了20行代码的编写工作
+    - 本节中，你总计完成了19行代码的编写工作
 
 ------------------------------------
 
@@ -206,3 +246,4 @@ NeoPixel类的变量numPixels。
     - showAnimation_rainbow (函数, 输入参数: 持续时间t, 无返回值), 让BlueFi显示移动彩虹效果的预制图案, 并持续t秒
     - showAnimation_comet (函数, 输入参数: 持续时间t, 无返回值), 让BlueFi显示彗星掠过效果的预制图案, 并持续t秒
     - showAnimation_wipe (函数, 输入参数: 持续时间t, 无返回值), 让BlueFi显示进度条效果的预制图案, 并持续t秒
+    - drawPillar (函数，输入参数: 变量v, 变量最小值, 变量最大值, 峰值颜色元组), 用变量v的值画柱状图
