@@ -117,6 +117,44 @@ BlueFi的喇叭在B按钮的反面，出声孔正好对准板子的右边缘，�
 琴键序列和持续时长，很容使用BlueFi重复播放你弹奏的旋律，如果需要修改某些不满意的音节(音调和节拍)是很容易的，然后再重新播放。如此一来，
 BlueFi将成为你谱曲的小助手。
 
+
+播放音频文件
+------------------------
+
+或许你觉得播放基本音调并不能满足自己的需要，BlueFi支持wav格式音频文件中的音乐或声音。BlueFi采用磁盘映射和文件拖放等操作，你很容易把
+音频文件拖放至/CIRCUITPY/sound/文件夹，然后使用spk的play_wavfile函数播放这种格式的音频文件。对于wav格式的文件，要求采用16KHz采
+样率，16位分辨率。关于wav格式的文件更多属性和介绍，请使用搜索引擎自行查阅。
+
+此处我们使用A和B按钮播放不同的音频文件作为示例，帮助你掌握使用BlueFi播放wav格式音频文件的编程方法：
+
+.. code-block::  python
+  :linenos:
+
+    from hiibot_bluefi.basedio import Button
+    from hiibot_bluefi.soundio import SoundOut
+    button = Button()
+    spk = SoundOut()
+    spk.enable = 1
+    files = ["/sound/Coin.wav", "/sound/rise.wav"]
+    while True:
+        if button.A:
+            spk.play_wavfile(files[0])
+        if button.B:
+            spk.play_wavfile(files[1])
+
+运行本示例程序之前，务必将两个wav格式文件保存在BlueFi的/CIRCUITPY/cound/文件夹内，此处可以下载本示例程序使用到的两个音乐文件
+:download:`Coin.wav </../../_static/sound/Coin.wav>` 和
+:download:`rise.wav </../../_static/sound/rise.wav>` 到你的电脑磁盘上，
+然后在BlueFi的CIRCUITPY磁盘根目录新建一个sound文件夹，并把这两个音频文件拖放至/CIRCUITPY/sound/文件夹。过程如下图所示：
+
+.. image:: /../../_static/images/bluefi_basics/sound_files.gif
+  :scale: 20%
+  :align: center
+
+请注意，BlueFi的SPI文件系统仅有2MB空间，存放Python库文件和用户程序会占用1/4空间，其余空间可以用于保存你的sound、image等格式文件，
+但务必注意文件大小，有限的存储空间务必节约使用，否则一不小心就把BlueFi磁盘塞满了。
+
+
 .. admonition:: 
   总结：
 
