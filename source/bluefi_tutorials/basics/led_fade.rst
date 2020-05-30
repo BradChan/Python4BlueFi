@@ -73,7 +73,7 @@ PWM信号的高电平宽度定义为“v*(1000ns/65536)”，当v=65535时，高
 亮度的变化规律：
 
 .. code-block::  python
-   :linenos:
+  :linenos:
 
     import time
     from hiibot_bluefi.basedio import PWMLED
