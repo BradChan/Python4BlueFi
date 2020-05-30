@@ -187,7 +187,7 @@ Din信号焊盘可靠地连接起来，并将灯珠串的V+和3.3V或5V直流电
 
 .. code-block::  python
   :linenos:
-
+    
     import time
     from hiibot_bluefi.basedio import NeoPixel
     pixels = NeoPixel(numPixels=5+10)
