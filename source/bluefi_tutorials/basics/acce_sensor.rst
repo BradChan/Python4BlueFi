@@ -155,5 +155,6 @@ BlueFi的5颗RGB像素彩灯是一种特殊的显示元件，响应速度快能�
     - PedometerValue (属性, 只读, 有效值: 0~65535), BlueFi的Sensors类减速度传感器的计步器值属性
     - AcceRange (属性, 可读可写, 有效值: 0~3), BlueFi的Sensors类加速度传感器量程属性, 0:2g, 1:4g, 2:8g, 3:16g
     - AcceRate (属性, 可读可写, 有效值: 0~11), BlueFi的Sensors类加速度传感器数据更新率属性, 0:SD, 1:1.6Hz, 2:12.5Hz, 3:26Hz, .., 10:3.33Khz, 11:6.66KHz
-    - enablePedometer (函数, 输入参数: 使能或禁止, 有效值: 0或1), BlueFi的Sensor类加速度传感器的计步器单元使能/禁用控制
+    - enablePedometer (函数, 输入参数: 使能或禁止, 无返回值), BlueFi的Sensor类加速度传感器的计步器单元使能/禁用控制
+    - shake (函数, 输入参数: 阈值, 采样次数, 延迟时间, 返回值: 0或1), BlueFi的Sensor类加速度传感器的振动检测, 返回1:有振动，0:无振动
 
