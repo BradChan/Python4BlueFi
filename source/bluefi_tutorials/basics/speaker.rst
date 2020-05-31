@@ -168,7 +168,7 @@ BlueFi将成为你谱曲的小助手。
 
 
 .. Important::
-  **PWMLED类的接口**
+  **SoundOut类的接口**
 
     - enable (属性, 可读可写, 有效值：0或1), BlueFi喇叭的使能控制，0:禁止声音输出; 1:允许声音输出
     - bpm (属性, 可读可写, 有效值：30~360), 每分钟的节拍数(Beats Per Minute)，指定节拍的长短
