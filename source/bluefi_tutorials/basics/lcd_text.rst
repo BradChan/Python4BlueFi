@@ -163,12 +163,12 @@ delayCnt为500，并设置屏幕背光板亮度为最大(1.0)。在screenSave函
 .. Important::
   **Screen类的接口**
 
-    - display (子类), FlueFi的Screen子类
-    - width (属性, 只读, 有效值：240), FlueFi的Screen类属性，屏幕宽度(x-)方向的像素个数
-    - height (属性, 只读, 有效值：240), FlueFi的Screen类属性，屏幕高度(y-)方向的像素个数
+    - display (子类), BlueFi的Screen子类
+    - width (属性, 只读, 有效值：240), BlueFi的Screen类属性，屏幕宽度(x-)方向的像素个数
+    - height (属性, 只读, 有效值：240), BlueFi的Screen类属性，屏幕高度(y-)方向的像素个数
     - rotation (属性, 可读可写, 有效值: 0/90/180/270), 旋转BlueFi的LCD屏幕的方向控制
     - brightness (属性, 可读可写, 有效值: 0.0~1.0), BlueFi的LCD屏幕的亮度控制
-    - show (函数, 输入参数: 指定显示内容, 无返回值), 将某些指定的内容显示在FlueFi的LCD屏上
+    - show (函数, 输入参数: 指定显示内容, 无返回值), 将某些指定的内容显示在BlueFi的LCD屏上
     - simple_text_display (子类), 用于控制BlueFi的LCD屏幕显示多行文本
 
       - show (多行文本显示子类的函数, 无参数, 无返回值), 更新多行文本显示的内容到屏幕上

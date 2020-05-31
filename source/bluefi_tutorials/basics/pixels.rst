@@ -233,9 +233,9 @@ NeoPixel类的变量numPixels。
 .. Important::
   **NeoPixel类的接口**
 
-    - pixels (子类), FlueFi的NeoPixel子类
-    - num_pixels (属性, 只读, 有效值：5或更多), FlueFi的RGB像素灯珠的个数
-    - brightness (属性, 可读可写, 有效值：0.0～1.0), FlueFi的RGB像素灯珠串的整体亮度
+    - pixels (子类), BlueFi的NeoPixel子类
+    - num_pixels (属性, 只读, 有效值：5或更多), BlueFi的RGB像素灯珠的个数
+    - brightness (属性, 可读可写, 有效值：0.0～1.0), BlueFi的RGB像素灯珠串的整体亮度
     - clearPixels (函数, 无输入参数, 无返回值), 关闭BlueFi的所有RGB像素灯珠
     - fillPixels (函数, 输入参数：三基色分量的元组, 无返回值), 让BlueFi的所有RGB像素灯珠显示指定的颜色
     - drawPattern (函数, 输入参数:5或更多颗灯珠的颜色列表, 无返回值), 让BlueFi的RGB像素灯珠显示给定的图案

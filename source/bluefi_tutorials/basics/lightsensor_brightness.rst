@@ -99,4 +99,4 @@
 .. Important::
   **Sensors类的环境光亮度接口**
 
-    - color[3] (属性, 只读, 有效值：0~65535), FlueFi的Sensors类属性, 集成光学传感器的color属性的第4个分量, 即环境光亮度
+    - color[3] (属性, 只读, 有效值：0~65535), BlueFi的Sensors类属性, 集成光学传感器的color属性的第4个分量, 即环境光亮度

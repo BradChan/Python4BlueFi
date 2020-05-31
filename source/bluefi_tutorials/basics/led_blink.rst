@@ -136,7 +136,7 @@ led对象总共有4个属性？这些信息并不能确定led对象所支持的4
 .. Important::
   **LED类的接口**
 
-    - red (属性, 可读可写, 有效值：0 或 1), FlueFi红色LED的状态及控制
-    - whilte (属性, 可读可写, 有效值：0 或 1), FlueFi白色LED的状态及控制
-    - redToggle (函数，无参数), 切换FlueFi红色LED的状态
-    - whiteToggle (函数，无参数), 切换FlueFi红色LED的状态
+    - red (属性, 可读可写, 有效值：0 或 1), BlueFi红色LED的状态及控制
+    - whilte (属性, 可读可写, 有效值：0 或 1), BlueFi白色LED的状态及控制
+    - redToggle (函数，无参数), 切换BlueFi红色LED的状态
+    - whiteToggle (函数，无参数), 切换BlueFi红色LED的状态

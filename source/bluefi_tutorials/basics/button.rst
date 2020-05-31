@@ -202,12 +202,12 @@ print("hello")是将字符串“hello”显示在LCD屏幕(控制台)上。如�
 .. Important::
   **Button类的接口**
 
-    - A (属性, 只读, 有效值：0 或 1), FlueFi的A按钮状态
-    - B (属性, 只读, 有效值：0 或 1), FlueFi的B按钮状态
-    - A_wasPressed (属性, 只读, 有效值：0 或 1), FlueFi的A按钮已被按下
-    - B_wasPressed (属性, 只读, 有效值：0 或 1), FlueFi的B按钮已被按下
-    - A_wasReleased (属性, 只读, 有效值：0 或 1), FlueFi的A按钮已被释放
-    - B_wasReleased (属性, 只读, 有效值：0 或 1), FlueFi的B按钮已被释放
+    - A (属性, 只读, 有效值：0 或 1), BlueFi的A按钮状态
+    - B (属性, 只读, 有效值：0 或 1), BlueFi的B按钮状态
+    - A_wasPressed (属性, 只读, 有效值：0 或 1), BlueFi的A按钮已被按下
+    - B_wasPressed (属性, 只读, 有效值：0 或 1), BlueFi的B按钮已被按下
+    - A_wasReleased (属性, 只读, 有效值：0 或 1), BlueFi的A按钮已被释放
+    - B_wasReleased (属性, 只读, 有效值：0 或 1), BlueFi的B按钮已被释放
     - A_pressedFor (函数, 输入参数: 时长, 返回值:0 或 1), BlueFi的A按钮是否被长按超过指定的时长
     - B_pressedFor (函数, 输入参数: 时长, 返回值:0 或 1), BlueFi的B按钮是否被长按超过指定的时长
     - Update (函数, 无参数, 无返回值), 更新BlueFi的两个按钮的状态, 必须放在循环体内调用

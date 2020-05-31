@@ -122,4 +122,4 @@ BlueFi的集成光学传感器能够实现这一功能。
 .. Important::
   **Sensors类的接近度接口**
 
-    - proximity (属性, 只读, 有效值：0~255), FlueFi的Sensors类属性, 集成光学传感器的proximity属性, 即接近度
+    - proximity (属性, 只读, 有效值：0~255), BlueFi的Sensors类属性, 集成光学传感器的proximity属性, 即接近度

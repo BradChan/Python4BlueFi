@@ -85,7 +85,7 @@ BlueFi的集成光学传感器具有手势识别功能，能够识别四个方�
 .. Important::
   **Sensors类的手势传感器接口**
 
-    - gesture (属性, 只读, 有效值：0, 1, 2, 3, 4), FlueFi的Sensors类gesture属性, 集成光学传感器的手势识别结果
+    - gesture (属性, 只读, 有效值：0, 1, 2, 3, 4), BlueFi的Sensors类gesture属性, 集成光学传感器的手势识别结果
 
       - 0: 未是被到任何手势
       - 1: 向上挥手(从B按钮向光学传感器方向)
