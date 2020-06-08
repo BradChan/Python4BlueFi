@@ -65,10 +65,11 @@ BlueFi简介
 -------------------------------------
 
 .. toctree::
-    :caption: CircuitPython
+    :caption: CPython
     :numbered:
 
-    circuitpython/guide/index.rst
-    circuitpython/essentials/index.rst
+    cpython/guide/index.rst
+    cpython/essentials/index.rst
+    cpython/advance/index.rst
 
 
