@@ -56,24 +56,25 @@ Python的generator被yield中断一次并返回一个迭代值，这样的机制
 .. code-block::  python
   :linenos:
 
-      def Fibonacci(iterm): 
-         n, a, b = 0, 0, 1 
-         list_fib = [] 
-         while n < iterm: 
-            list_fib.append(b) 
-            a, b = b, a + b 
-            n = n + 1 
-         return list_fib
+   def Fibonacci(iterm): 
+      n, a, b = 0, 0, 1 
+      list_fib = [] 
+      while n < iterm: 
+         list_fib.append(b) 
+         a, b = b, a + b 
+         n = n + 1 
+      return list_fib
 
-      lf = Fibonacci(20)
-      print(lf)
+   lf = Fibonacci(20)
+   print(lf)
 
 将该程序代码保存到BlueFi的/CIRCUITPY/code.py文件，你将会在BlueFi的LCD屏幕和串口控制台看到以下输出
 
 .. code-block::  
+  :linenos:
 
-      code.py output:
-      [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765]
+   code.py output:
+   [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765]
 
 这是斐波那契数列前20项的列表。这个程序看起来没有任何毛病，但是我们可以预测，当调用函数Fibonacci的输入参数很大时，
 该函数将返回一个很大的列表，占用内存量随着该参数增大而增加。在有限内存资源的计算机系统中调用这个函数，由于函数的
@@ -87,13 +88,14 @@ BLueFi完全兼容Python3，支持range(n)迭代器，去掉xrange()函数。用
 点击“串口”按钮，按下“Ctrl+c”键并按确认，进入REPL模式，你可以输入验证range()迭代器：
 
 .. code-block::  
+   :linenos:
 
-      >>> l=range(10)
-      >>> l
-      range(0, 10)
-      >>> list(l)
-      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-      >>> 
+   >>> l=range(10)
+   >>> l
+   range(0, 10)
+   >>> list(l)
+   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+   >>> 
 
 当你将迭代器变量l打印到控制台时，他只是显示“range(0, 10)”，而不是“[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]”，只有使用list(l)函数将
 迭代器变量l明确地转换为列表时我们才看到完整列表。
@@ -107,19 +109,20 @@ BLueFi完全兼容Python3，支持range(n)迭代器，去掉xrange()函数。用
 .. code-block::  python
   :linenos:
 
-      def Fibonacci(iterm): 
-         n, a, b = 0, 0, 1 
-         while n < iterm: 
-            yield b 
-            a, b = b, a + b 
-            n = n + 1 
+   def Fibonacci(iterm): 
+      n, a, b = 0, 0, 1 
+      while n < iterm: 
+         yield b 
+         a, b = b, a + b 
+         n = n + 1 
 
-      for i in Fibonacci(10):
-         print(i)
+   for i in Fibonacci(10):
+      print(i)
 
 将该程序代码保存到BlueFi的/CIRCUITPY/code.py文件，你将会在BlueFi的LCD屏幕和串口控制台看到以下输出:
 
 .. code-block:: 
+   :linenos:
 
       code.py output:
       1
@@ -149,15 +152,15 @@ BLueFi完全兼容Python3，支持range(n)迭代器，去掉xrange()函数。用
 .. code-block::  python
   :linenos:
 
-      def read_file(file): 
-         BLOCK_SIZE = 256 
-         with open(file, 'rb') as f: 
-             while True: 
-                 block = f.read(BLOCK_SIZE) 
-                 if block: 
-                     yield block 
-                 else: 
-                     return
+   def read_file(file): 
+      BLOCK_SIZE = 256 
+      with open(file, 'rb') as f: 
+          while True: 
+              block = f.read(BLOCK_SIZE) 
+              if block: 
+                  yield block 
+              else: 
+                  return
 
 这仅仅是一个改进的逐块读取文件的程序模型。关键的第7行——yield block，当程序执行到这里的时候，函数会中断一次并抛出
 文件的一个块给函数调用者，然后继续执行下一句，继续读取下一个数据块，如果已经到文件末尾，则直接返回。
