@@ -197,3 +197,25 @@ list的内部函数简要说明：
   - for  obj  in list
 
 这种遍历列表的程序结构相当于一种生成器，每个循环会返回列表list中的一个对象，遍历顺序从首项到末项，循环次数等于len(list)。
+
+下面的示例中，我们使用list及其内部函数定义一个呼吸灯亮度的数据列表，然后使用这个列表控制BlueFi白光灯的亮度，你将会看到
+白光灯的“呼吸”效果。程序代码如下：
+
+.. code-block::  python
+  :linenos:
+
+  import time
+  from hiibot_bluefi.basedio import PWMLED
+  led = PWMLED()
+  l = [x for x in range(0, 65535, 5535)]
+  lc = l.copy()
+  lc.reverse()
+  l.extend(lc)
+
+  while True:
+      for b in l:
+          led.white = b//5
+          time.sleep(0.1)
+
+注意，第11行代码的“b//5”目的是确保亮度设定值为整数。
+
