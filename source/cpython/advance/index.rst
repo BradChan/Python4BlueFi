@@ -12,6 +12,7 @@ CPython高级主题
 .. toctree::
    :maxdepth: 1
 
+   recursive_function.rst
    yield_generator.rst
 
 
