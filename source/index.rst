@@ -64,8 +64,8 @@ BlueFi简介
    :caption: 固件和开源库
    :maxdepth: 1
    
-   bluefi_lib/firmware.rst
-   bluefi_lib/library.rst
+   bluefi_lib/index_firm.rst
+   bluefi_lib/index_lib.rst
 
 -------------------------------------
 
