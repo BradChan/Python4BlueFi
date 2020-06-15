@@ -11,6 +11,7 @@ BlueFi的研发工作是持续的，我们将不断地更新固件和维护开�
 
    library.rst
    library_use.rst
+   library_creat.rst
 
 
 
