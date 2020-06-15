@@ -50,3 +50,11 @@ BlueFi是一个持续开发和更新的单板机，建议定期(至少每季度)
   - BlueFi的“CIRCUITPY”磁盘用于存放你的程序文件——code.py，以及开源库、图片、声音、字库等资源文件，升级固件时不会影响这些文件
   - BlueFi的“CIRCUITPY”磁盘上的文件使用电脑资源管理器来维护，跟电脑上其他文件一样地使用
 
+本向导的总结如下：
+
+.. admonition::  更新BlueFi的步骤：
+
+  - step1: 点击本页面上方的固件下载链接，并保存固件文件到电脑本地磁盘
+  - step2: 用USB数据线将BlueFi与电脑连接好，双击BlueFi的复位按钮，等待彩灯全部变为绿色，电脑上出现“BLUEFIBOOT”磁盘
+  - step3: 将固件文件拖放(或复制-粘贴)到“BLUEFIBOOT”磁盘，等待20秒左右，固件更新完毕后BlueFi自动重启
+  - step4: 更新固件后BlueFi重启开始用更新版固件，电脑上出现“CIRCUITPY”磁盘，并执行该磁盘上的code.py程序
