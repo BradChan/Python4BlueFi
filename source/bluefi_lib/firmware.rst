@@ -24,9 +24,11 @@ BlueFi是一个持续开发和更新的单板机，建议定期(至少每季度)
 当你使用USB数据线将BlueFi与电脑正确链接后，电脑的资源管理器中将出现一个名为“CIRCUITPY”的可卸载磁盘(相当于U盘)。展开这个磁盘
 的文件列表，查看“boot_out.txt”文件，你将会找到BlueFi当前所用固件的版本号。譬如，下图的这个示例。
 
+
 .. image::  ../../_static/images/bluefi_lib/bluefi_firmver.jpg
   :scale: 40%
   :align: center
+
 
 (上图示例使用macOS电脑，其他OS系统的情况或有差别)
 
@@ -35,16 +37,18 @@ BlueFi是一个持续开发和更新的单板机，建议定期(至少每季度)
 更新BlueFi固件
 ---------------------------
 
-任何时候，你只需要双击BlueFi的“RESET”按钮，BlueFi都将自动侦测与电脑的连接状态，如果与电脑是可靠连接的，BlueFi的全部彩灯立即
-切换为低亮度绿色(这个现象十分地明显)，且红色LED处于慢呼吸状态(亮度渐灭再渐亮地循环)，这些现象表示：BlueFi已经进入Boot模式。同时，
-电脑上出现一个名为“BLUEFIBOOT”的可下载磁盘(相当于U盘)。
+任何时候，你只需要双击BlueFi的“RESET”按钮，BlueFi将自动侦测与电脑的连接状态，如果BlueFi已与电脑可靠连接，BlueFi的全部彩灯立即
+切换为低亮度绿色(这个现象十分明显!) 且红色LED处于慢呼吸状态(亮度从渐灭到渐亮循环)，这些现象表示：BlueFi已经进入Boot模式。同时，
+电脑上出现一个名为“BLUEFIBOOT”的可卸载磁盘(相当于U盘)。
 
-将前面下载好的固件文件“BlueFi_firmware_x.x.uf2”直接拖放到“BLUEFIBOOT”磁盘即可。如果你习惯用“ctrl+c”和“ctrl+v”快捷键来
+将前面下载好的固件文件“BlueFi_firmware_x.x.uf2”直接拖放到“BLUEFIBOOT”磁盘即为更新BlueFi固件! 如果你习惯用“ctrl+c”和“ctrl+v”快捷键来
 复制电脑上下载好的BlueFi固件并粘贴到“BLUEFIBOOT”磁盘，操作效果完全相同。
+
 
 .. image::  ../../_static/images/bluefi_lib/drag_firm.gif
   :scale: 20%
   :align: center
+
 
 将固件复制到“BLUEFIBOOT”磁盘即为更新BlueFi固件！
 
