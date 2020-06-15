@@ -61,10 +61,11 @@ BlueFi简介
 -------------------------------------
 
 .. toctree::
-   :caption: BlueFi API
+   :caption: 固件和开源库
    :maxdepth: 1
    
-   bluefi_api/index.rst
+   bluefi_lib/firmware.rst
+   bluefi_lib/library.rst
 
 -------------------------------------
 
