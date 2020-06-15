@@ -12,6 +12,10 @@ BlueFi是一个持续开发和更新的单板机，建议定期(至少每季度)
 下载最新版固件并保存到自己电脑上备份，默认的BlueFi固件文件名为“BlueFi_firmware_x.x.uf2”，其中“x.x”代表当前下载的
 固件版本号。注意，该文件采用“uf2”格式，扩展名为“.uf2”。请记住保存该文件的文件夹位置。
 
+.. image::  ../../_static/images/bluefi_lib/download_firm.gif
+  :scale: 20%
+  :align: center
+
 -------------------------
 
 如何找到BlueFi的固件版本?
@@ -37,6 +41,10 @@ BlueFi是一个持续开发和更新的单板机，建议定期(至少每季度)
 
 将前面下载好的固件文件“BlueFi_firmware_x.x.uf2”直接拖放到“BLUEFIBOOT”磁盘即可。如果你习惯用“ctrl+c”和“ctrl+v”快捷键来
 复制电脑上下载好的BlueFi固件并粘贴到“BLUEFIBOOT”磁盘，操作效果完全相同。
+
+.. image::  ../../_static/images/bluefi_lib/drag_firm.gif
+  :scale: 20%
+  :align: center
 
 将固件复制到“BLUEFIBOOT”磁盘即为更新BlueFi固件！
 
