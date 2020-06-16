@@ -39,8 +39,17 @@ BlueFi简介
    bluefi_intro/index.rst
 
 
---------------------------------------
+认识BlueFi
+-------------------------------------
 
+.. toctree::
+   :maxdepth: 1
+   
+   know_bluefi/index.rst
+
+-------------------------------------
+
+-------------------------------------
 
 .. toctree::
    :caption: 使用BlueFi前的准备
@@ -57,6 +66,18 @@ BlueFi简介
     bluefi_tutorials/basics/index.rst
     bluefi_tutorials/advance/index.rst
     bluefi_tutorials/project/index.rst
+
+-------------------------------------
+
+.. toctree::
+   :caption: 与microbit周边
+   :maxdepth: 1
+   
+   peripheral/index_car.rst
+   peripheral/index_robot.rst
+   peripheral/index_grove.rst
+
+-------------------------------------
 
 -------------------------------------
 
