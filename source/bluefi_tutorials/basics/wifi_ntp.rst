@@ -46,7 +46,7 @@ BlueFi，并编程让BlueFi连接到这个AP。如果这个AP与互联网是连�
 
 下面我们使用第2种方法设计一个让BlueFi连接到互联网的程序示例。程序代码如下：
 
-.. code-block::  
+.. code-block::  python
   :linenos:
 
   from hiibot_bluefi.wifi import WIFI
@@ -84,7 +84,7 @@ BlueFi，并编程让BlueFi连接到这个AP。如果这个AP与互联网是连�
 
 下面示例采用第1种方法设置AP的名称和密码：
 
-.. code-block::  
+.. code-block::  python
   :linenos:
 
   from hiibot_bluefi.wifi import WIFI
@@ -132,7 +132,7 @@ BlueFi，并编程让BlueFi连接到这个AP。如果这个AP与互联网是连�
 
 本示例程序的代码如下：
 
-.. code-block::  
+.. code-block::  python
   :linenos:
 
   import time
