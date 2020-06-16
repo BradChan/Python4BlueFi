@@ -24,7 +24,7 @@ web-socket)和WSS(具备安全加密传输的WS))，又将MQTT分为4种；2) �
 发布/订阅模式可以极大地降低网络带宽的需求，传统的消息发布和接收是一对一或一对多(广播)，一对一必定会增加网络带宽需求，而MQTT的消息发布者并不
 关心消息发个谁，只有订阅该消息的订阅者才会自动收到MQTT服务器转发的消息。
 
-.. image:: /../../_static/images/bluefi_basics/mqtt_initialize.jpg
+.. image:: /../../_static/images/bluefi_basics/mqtt_orgin.png
   :scale: 100%
   :align: center
 
@@ -61,6 +61,13 @@ MQTT的工作流程
   :align: center
 
 (客户端A发布一个主题消息并由MQTT服务器/代理推送给该消息的订阅者的流程)
+
+
+将BlueFi连接到MQTT服务器
+----------------------------
+
+当我们初步了解MQTT协议和工作流程之后，我们开着手让BlueFi连接到MQTT服务器，为了简化问题，我们首先是使用匿名方式登录MQTT服务器
+免去注册获取ID和密码的过程。
 
 
 
