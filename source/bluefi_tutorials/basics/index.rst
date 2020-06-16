@@ -40,6 +40,7 @@
    ble_radio.rst
    wifi_apscan.rst
    wifi_ntp.rst
+   wifi_mqtt.rst
 
 
 

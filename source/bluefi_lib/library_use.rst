@@ -176,6 +176,17 @@ BlueFi默认示例程序文件，这个源文件大小占4KB，另外有一个/i
 在BlueFi开源库中搜索“cutebot”即可定位到该硬件套件的开源库，将该文件/文件夹复制-粘贴或拖放到BlueFi的“/CIRCUITPY/lib/”文件夹中
 即可使用。
 
+同样地，BlueFi开源库文件夹中的examples也有特殊命名规则以方便查找：
+
+  . 板名称/开源库名称_示例功能名称.py
+
+譬如，“/examples/bluefi_wifi_apscan.py”示例文件实现wifi扫描周边AP的功能，“/examples/bluefi_wifi_connectAP.py”示例
+文件实现wifi连接到一个指定的AP热点。这两个示例文件都适合于BlueFi单板机。
+
+注意，你不能直接把BlueFi开源库的examples文件夹中的示例文件直接复制-粘贴或拖放到BlueFi的磁盘，因为BlueFi只能接受“code.py”作为
+用户程序名称，其他名称的py文件会BlueFi处理成普通的文件，不会自动执行！正确的使用示例程序的方法：将需要使用的示例名称修改为code.py
+之后在复制-粘贴或拖放到BlueFi的“CIRCUITPY”磁盘跟目录即可。
+
 ---------------------------------
 
 如果你想要自己定义BlueFi的库文件，请点击“Next”按钮进入下一个向导。
