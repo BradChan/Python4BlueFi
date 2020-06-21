@@ -5,7 +5,9 @@ Bluefi开源库及其下载
 BlueFi的开源库分为两种版本：1) mpy格式(压缩的二进制脚本格式)；2) py源码格式(Python源码，可读性好，占用更大存储空间)。
 每一种版本都包含有开源库和示例程序，而且所有示例程序都是Python源码格式。
 
-当前版本的BlueFi开源库压缩包的发布日期为：2020-6-12
+---------------------------------------------
+
+当前版本的BlueFi开源库压缩包的发布日期为：2020-6-21
 
 点击此处 `下载最新版BlueFi开源库(mpy格式)压缩包`_  (建议使用这个压缩包，为了节约BlueFi有限的存储空间)
 
@@ -13,8 +15,8 @@ BlueFi的开源库分为两种版本：1) mpy格式(压缩的二进制脚本格�
 
 BlueFi开源库的每一个库文件都带有自己的版本编号，此处下载的
 
-.. _下载最新版BlueFi开源库(mpy格式)压缩包: http://www.hibottoy.com:8080/static/install/micro/CircuitPython/HiiBot_BlueFi_CircuitPy/bluefi-circuitpython-library-5.x-mpy-20200612.zip
-.. _下载最新版BlueFi开源库(py源码格式)压缩包: http://www.hibottoy.com:8080/static/install/micro/CircuitPython/HiiBot_BlueFi_CircuitPy/bluefi-circuitpython-library-5.x-py-20200612.zip
+.. _下载最新版BlueFi开源库(mpy格式)压缩包: http://www.hibottoy.com:8080/static/install/micro/CircuitPython/HiiBot_BlueFi_CircuitPy/bluefi-circuitpython-library-5.x-mpy-20200621.zip
+.. _下载最新版BlueFi开源库(py源码格式)压缩包: http://www.hibottoy.com:8080/static/install/micro/CircuitPython/HiiBot_BlueFi_CircuitPy/bluefi-circuitpython-library-5.x-py-20200621.zip
 
 BlueFi是一个持续开发和更新的单板机，建议定期(至少每季度)检查此链接，下载最新版开源库压缩包，并使用本向导更新固件。
 
@@ -22,6 +24,22 @@ BlueFi是一个持续开发和更新的单板机，建议定期(至少每季度)
   :scale: 20%
   :align: center
 
+
+.. admonition::  更新说明：
+
+  - 增加DFRobot的麦昆(maqueen)接口库(hiibot_maqueen.py)和2个应用示例(在examples文件夹中查找maqueen_corral.py和maqueen_trackline.py)
+  - 完善LSM6DS3库版本的兼容问题，Adafruit升级的库(2.1)不支持计步器功能，重新完善
+
+---------------------------------------------
+
+2020-6-12发布的版本
+
+点击 `下载2020-6-12版BlueFi开源库(mpy格式)压缩包`_  (建议使用这个压缩包，为了节约BlueFi有限的存储空间)
+
+点击 `下载2020-6-12版BlueFi开源库(py源码格式)压缩包`_  (打算自行增减或修改BlueFi开源库的高级用户可以使用这个压缩包)
+
+.. _下载2020-6-12版BlueFi开源库(mpy格式)压缩包: http://www.hibottoy.com:8080/static/install/micro/CircuitPython/HiiBot_BlueFi_CircuitPy/bluefi-circuitpython-library-5.x-mpy-20200612.zip
+.. _下载2020-6-12版BlueFi开源库(py源码格式)压缩包: http://www.hibottoy.com:8080/static/install/micro/CircuitPython/HiiBot_BlueFi_CircuitPy/bluefi-circuitpython-library-5.x-py-20200612.zip
 
 -------------------------------
 
