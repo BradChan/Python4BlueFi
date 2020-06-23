@@ -35,7 +35,7 @@ BlueFi+MaQueen组成智能小车，如下图所示。
   :scale: 30%
   :align: center
 
-为什么需要增加这两个电阻呢？首先我们需要知道I2C接口的两个信号线要求必须有上啦电阻。麦昆小车的电机、舵机控制使用I2C接口与BlueFi的P19和P20
+为什么需要增加这两个电阻呢？首先我们需要知道I2C接口的两个信号线要求必须有上拉电阻。麦昆小车的电机、舵机控制使用I2C接口与BlueFi的P19和P20
 引脚连接，然而BlueFi的P19和P20引脚没有板载上拉电阻，麦昆小车的板上的这两个引脚也没有上拉电阻，这样不能满足I2C总线的“线与”要求。
 
 这个需求只针对部分BlueFi。当你执行下面的示例任意程序时，如果在BlueFi的LCD屏幕上或串口控制台上看到以下的错误提示时，说明需要增加这两个上拉电阻。
@@ -249,7 +249,7 @@ AGV如何实现“沿着规定路线行驶到指定停靠点”呢？有很多�
 
   #  stop car one second
   car.stop()
-  carspeed = 60
+  carspeed = 75
   time.sleep(1)
   start = True
 
@@ -317,10 +317,10 @@ AGV如何实现“沿着规定路线行驶到指定停靠点”呢？有很多�
                   car.motor(carspeed, carspeed)
               # left sensor is above backline, but right sensor missed backline, thus turn left
               elif not car.leftTrackSensor:
-                  car.motor(carspeed//2, carspeed)
+                  car.motor(carspeed//3, carspeed)
               # right sensor is above backline, but left sensor missed backline, thus turn right
               elif not car.rightTrackSensor:
-                  car.motor(carspeed, carspeed//2)
+                  car.motor(carspeed, carspeed//3)
               # two sensors missed backline, thus stop car and search backline
               else:
                   car.stop()
@@ -333,8 +333,14 @@ AGV如何实现“沿着规定路线行驶到指定停靠点”呢？有很多�
           while True:
               pass
 
+看起来程序代码很长！为了帮助你理解程序语句的作用，请分析下面的流程图，并对照程序代码、执行程序时麦昆的行为。
+
+.. image::  ../../_static/images/peripheral/maqueen_tracking0.jpg
+  :scale: 40%
+  :align: center
+
 将示例程序保存到BlueFi的/CIRCUITPY/code.py文件中，并将BlueFi插入到麦昆小车，将麦昆小车的电源开关拨到
-“on”档位，等待我们的程序正式开始运行后，按下BlueFi的A按钮，并将整个小车放在黑色胶带上方，观察程序的执行效果。
+“on”档位，并将整个小车放在黑色胶带上方，等待我们的程序正式开始运行后，观察程序的执行效果。
 如果你想要让麦昆小车停下来，按下B按钮即可。
 
 虽然示例程序看起来很长，我们增加的彩光效果和按钮控制开启/停车等逻辑占用将近一半的代码，真正的循迹控制逻辑
@@ -373,6 +379,115 @@ AGV避障
 
 示例程序代码如下：
 
+.. code-block::  python
+  :linenos:
+
+  import time
+  import random
+  from hiibot_bluefi.basedio import Button, NeoPixel
+  from hiibot_maqueen import MaQueen
+  car = MaQueen()
+  button = Button()
+  pixels = NeoPixel()
+
+  #  stop car one second
+  car.stop()
+  carspeed = 75
+  time.sleep(1)
+  start = True
+
+  car.pixels.fill((0,0,0))
+  car.pixels.show()
+  colors = [(255,0,0), (255,255,0), (0,255,0), (0,0,255)]
+  st = time.monotonic()
+
+  def roundColors():
+      global st
+      if (time.monotonic() - st) < (0.2 if start==True else 0.6):
+          return
+      st = time.monotonic()
+      t=colors[0]
+      for ci in range(3):
+          colors[ci] = colors[ci+1]
+          car.pixels[ci] = colors[ci]
+      colors[3] = t
+      car.pixels[3] = colors[3]
+      car.pixels.show()
+
+  def  searchBackLine():
+      global car
+      for steps in range(360):
+          rdir = random.randint(0, 2)
+          if rdir==0:
+              car.move(2, carspeed)
+          else:
+              car.move(3, carspeed)
+          time.sleep(0.005)
+          if not car.rightTrackSensor or not car.leftTrackSensor:
+              # backlin be searched by any sensor
+              car.stop()
+              return True
+      car.stop()
+      return False
+
+  def ssButton():
+      global start
+      button.Update()
+      if start and button.B_wasPressed:
+          print("stop")
+          start = False
+          return 2  # stop
+      if not start and button.A_wasPressed:
+          print("start")
+          start = True
+          return 1  # start
+      return 0      # hold the current status
+      
+
+  while True:
+      ssButton()
+      sbl = searchBackLine()
+      if sbl and start:
+          print("start to track this backline")
+          while True:
+              ssButton()
+              dist_cm = car.distance
+              if not start or dist_cm<15:
+                  car.stop()
+                  time.sleep(0.1)
+                  continue
+              # two sensors is above backline, go on
+              if not car.rightTrackSensor and not car.leftTrackSensor:
+                  car.motor(carspeed, carspeed)
+              # left sensor is above backline, but right sensor missed backline, thus turn left
+              elif not car.leftTrackSensor:
+                  car.motor(carspeed//3, carspeed)
+              # right sensor is above backline, but left sensor missed backline, thus turn right
+              elif not car.rightTrackSensor:
+                  car.motor(carspeed, carspeed//3)
+              # two sensors missed backline, thus stop car and search backline
+              else:
+                  car.stop()
+                  print("black line is missing, need to search the black line")
+                  break
+              time.sleep(0.01)
+              roundColors()
+      else:
+          print("failed to search backline")
+          while True:
+              pass
+
+如果你细心地对比以下上面的代码与前一个示例的代码，你会发现为了让正在行驶AGV不会直接撞上自己前方突然出现的障碍物，
+我们只是修改修改了第70行和第71行程序，第70行语句是将麦昆小车的超声波测距传感器的“麦昆与前方障碍物之间距离”赋予
+变量“dist_cm”，然后把第71行原来的“判断是否按下停车按钮”的单逻辑修改为“或组合”逻辑：“按下停车按钮”或“与障碍物
+之间距离小于15(cm)”，如果这个“或组合”逻辑的结果为“True”，让麦昆停车，并跳过无穷循环的后续程序块。
+
+根据前一个示例的使用效果，按下按钮B立即停车，按下按钮A则继续行驶。本示例修改后的“或组合”逻辑实现的效果：按钮B按钮
+或与前方障碍物的距离小于15公分时立即停车。那么停车期间按下按钮A会是什么样的效果呢？
+
+将示例程序保存到BlueFi的/CIRCUITPY/code.py文件中，并将BlueFi插入到麦昆小车，将麦昆小车的电源开关拨到
+“on”档位，并将整个小车放在黑色胶带上方，等待我们的程序正式开始运行后，用你的手掌放在麦昆行驶路线前方来模拟障碍物，
+观察麦昆的反应。
 
 --------------------------------
 
@@ -382,7 +497,13 @@ AGV避障
 下面来个更简单一点的效果。麦昆不慎进入一个巨石阵(很多个一次性杯子随机摆放在地上来模拟此阵)内，编程帮助麦昆走出
 巨石阵，切勿让麦昆碰到巨石。
 
+根据这一个任务，我们可以想象麦昆的行为或许应该是，与障碍物的距离小于10公分时，随机地选择右转或左转，直到前方的
+障碍物距离大于100公分(即1米)则停止转动，继续前进。虽然我们事先并不直到巨石阵中障碍物的具体位置，采用随机搜索可行
+路径的方法或许能够帮助麦昆走出巨石阵。
+
 示例程序如下：
+
+
 
 --------------------------------
 
