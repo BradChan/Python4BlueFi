@@ -174,7 +174,7 @@ list的内部函数简要说明：
 
 将上述示例程序保存到BlueFi的/CIRCUITPY/code.py文件，执行结果如下：
 
-.. code-block::  python
+.. code-block::  
   :linenos:
 
   code.py output:
@@ -272,5 +272,4 @@ list的内部函数简要说明：
     - 列表的遍历
     - 列表的应用
 
-------------------------------------
 
