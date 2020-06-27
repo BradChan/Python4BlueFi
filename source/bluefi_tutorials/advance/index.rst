@@ -14,4 +14,5 @@
    :maxdepth: 1
 
    list_type.rst
+   turple_type.rst
    bubble_sort_algorithm.rst
