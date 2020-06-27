@@ -194,7 +194,7 @@ list的内部函数简要说明：
 
 使用“for”程序结构我们可以遍历list的各项：
 
-  - for  obj  in list
+  - for  term  in  list
 
 这种遍历列表的程序结构相当于一种生成器，每个循环会返回列表list中的一个对象，遍历顺序从首项到末项，循环次数等于len(list)。
 
@@ -219,4 +219,58 @@ list的内部函数简要说明：
 
 注意，第11行代码的“b//5”目的是确保亮度设定值为整数，并将白光灯的亮度衰减到20%，避免过亮刺眼。与前面教程中的LED呼吸灯效果相比，
 这个示例程序的效果几乎完全相似，但是该示例中我们使用list定义一组“呼吸”规律变化的数据列表，避免计算和逻辑判断并实现同样的效果。
+程序执行效果如下图：
+
+.. image:: /../../_static/images/bluefi_advanced/list_fadeWhiteLed.gif
+  :scale: 50%
+  :align: center
+
+本示例程序的第4～7行的4个语句中，首先生成一个列表l，即[0, 5535, 11070, .., 60885]；然后复制另一个列表lc；将列表lc倒序；
+并用lc扩展原列表l，扩展后的列表l=[0, 5535, 11070, .., 60885, 60885, .., 11070, 5535, 0]，列表中共有22项数据，22项数值
+的变化规律：从0逐渐变大到60885，然后再从60885逐渐变小到0。将这一规律的护具列表当作白色LED的亮度，我们就看到“呼吸灯”效果。
+
+对上面的示例稍作修改，我们即可实现BlueFi的5颗RGB彩灯呈现“呼吸”效果：所有灯珠从灭逐渐变为红，然后从红渐变灭。效果如下图：
+
+.. image:: /../../_static/images/bluefi_advanced/list_fadeRGB_red.gif
+  :scale: 50%
+  :align: center
+
+对应的程序代码如下：
+
+.. code-block::  python
+  :linenos:
+
+  import time
+  from hiibot_bluefi.basedio import NeoPixel
+  pixels = NeoPixel()
+  r = [x for x in range(0, 255, 25)]
+  rc = r.copy()
+  rc.reverse()
+  r.extend(rc)
+
+  while True:
+      for b in r:
+          pixels.fillPixels((b, 0, 0))
+          pixels.pixels.show()
+          time.sleep(0.1)
+
+这个示例中原始列表r，即[0, 25, 50, .., 250]为RGB颜色的单分量的值，取值范围0～255。我们使用列表的复制、逆序和扩展等操作生成
+一个红色分量的渐变最大再渐变为0的列表，使用“for  term  in  list”遍历列表，以及“pixels.fillPixels((b, 0, 0))”和
+“pixels.pixels.show()”让BlueFi的5颗RGB彩灯实现渐变红再渐变灭的“呼吸”效果。
+
+
+-----------------------------
+
+.. admonition:: 
+  总结：
+
+    - list
+    - 列表的定义
+    - 访问列表中的某一项
+    - 访问列表中的某些项：列表切片
+    - 列表的操作：排序和倒序/逆序、插入和移除、追加和弹出、统计、清除、扩展等
+    - 列表的遍历
+    - 列表的应用
+
+------------------------------------
 
