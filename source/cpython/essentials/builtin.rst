@@ -153,7 +153,10 @@ CircuitPython的内建数学计算库——math兼容标准的Python3。使用US
 
     >>> import math
     >>> dir(math)
-    ['__class__', '__name__', 'acos', 'asin', 'atan', 'atan2', 'ceil', 'copysign', 'cos', 'degrees', 'e', 'exp', 'fabs', 'floor', 'fmod', 'frexp', 'isfinite', 'isinf', 'isnan', 'ldexp', 'log', 'modf', 'pi', 'pow', 'radians', 'sin', 'sqrt', 'tan', 'trunc']
+    ['__class__', '__name__', 'acos', 'asin', 'atan', 'atan2', 'ceil', 
+    'copysign', 'cos', 'degrees', 'e', 'exp', 'fabs', 'floor', 'fmod', 
+    'frexp', 'isfinite', 'isinf', 'isnan', 'ldexp', 'log', 'modf', 'pi', 
+    'pow', 'radians', 'sin', 'sqrt', 'tan', 'trunc']
     >>> 
 
 使用“import math”首先导入CircuitPython内建的“math”库；使用“dir(math)”可以查看内建的math库所支持的全部数学计算方法。
@@ -249,7 +252,43 @@ CircuitPython到底支持多少种内建库？让BlueFi进入REPL模式，并在
 这是为什么？
 
 
+lambda函数
+------------------------------------
+
+使用lambda定义一些函数非常便捷，譬如
+
+.. code-block::  python
+   :linenos:
+
+    >>> f = lambda x, y: x**y
+    >>> f(2, 3)
+    8
+    >>> f(8, 3)
+    512
+    >>> 
+
+定义一个名为“f”的lambda函数计算变量x的y次方。
 
 
+随机数
+------------------------------------
 
+CircuitPython内建的随机数发生器库，用法如下：
+
+.. code-block::  python
+   :linenos:
+
+    >>> import random
+    >>> random.random()
+    0.429787
+    >>> random.random()
+    0.815612
+    >>> random.randint(10, 20)
+    11
+    >>> random.randint(10, 20)
+    20
+    >>> 
+
+第1行导入内建库“random”，使用“random.random()”函数随机地生成一个0.0~1.0之间的浮点数；使用“random.randint(10, 20)”函数
+随机地生成一个10~20之间的整数，其中20包含其中，整数随机数发生器函数原型为“random.randint(min, max)”。
 
