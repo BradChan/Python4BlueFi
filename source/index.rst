@@ -91,7 +91,7 @@ BlueFi简介
 -------------------------------------
 
 .. toctree::
-    :caption: CPython
+    :caption: CircuitPython
     :numbered:
 
     cpython/guide/index.rst
