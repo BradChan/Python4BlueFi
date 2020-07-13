@@ -17,6 +17,7 @@ ARM Cortex-M4/M4F等，许多开源社区已经有各种各样的ARM Cortex-M0/M
    builtin.rst
    digitalio.rst
    analogio.rst
+   pwmout.rst
 
 
 
