@@ -91,6 +91,14 @@ BlueFi简介
 -------------------------------------
 
 .. toctree::
+   :caption: 快速学习Python语言
+   :maxdepth: 1
+
+   learnpython/learnpython_with_code.rst
+
+-------------------------------------
+
+.. toctree::
     :caption: CircuitPython
     :numbered:
 
