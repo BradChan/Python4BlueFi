@@ -36,9 +36,9 @@ microbit采用40-Pin金手指型拓展接口，包含19个可编程I/O引脚(注
   :scale: 10%
   :align: center
 
-BlueFi的40-Pin金手指型拓展接口完全兼容microbit，但用法更灵活，且不与板载资源共享引脚。换句话说，BlueFi的40-Pin拓展引脚
-全部可以独立编程用于拓展外部资源，同时保持板载资源照常使用。此外，BlueFi的40-Pin拓展接口上的19个引脚可编程作为
-DI/DO/PWM/I2C/I2S/SPI/UART等功能使用，比microbit的原始接口更加灵活。BlueFi的40-Pin金手指拓展接口如下图：
+BlueFi的40-Pin金手指型拓展接口的每一个引脚的功能完全兼容microbit，但用法更灵活，且不与板载资源共享引脚。换句话说，BlueFi的40-Pin拓展引脚
+全部可以独立编程用于拓展外部资源，同时保持板载资源照常使用。此外，BlueFi的40-Pin拓展接口上的19个引脚可编程作为DI/DO/PWM/I2C/I2S/SPI/UART等功能使用，
+比microbit的原始接口更加灵活。BlueFi的40-Pin金手指拓展接口如下图：
 
 .. image:: /../_static/images/bluefi_intro/BlueFi_board_IF.jpg
   :scale: 10%
