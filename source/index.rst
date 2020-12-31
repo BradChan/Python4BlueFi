@@ -79,6 +79,16 @@ BlueFi简介
 
 -------------------------------------
 
+.. toctree::
+   :caption: IoT扩展板及应用
+   :maxdepth: 1
+
+   iot_boards/index_rs485.rst
+   iot_boards/index_can.rst
+   iot_boards/index_ethernet.rst
+   iot_boards/index_nbiot.rst
+   iot_boards/index_wbiot.rst
+
 -------------------------------------
 
 .. toctree::
