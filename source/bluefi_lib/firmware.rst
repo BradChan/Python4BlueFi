@@ -9,7 +9,7 @@ Bluefi固件
 .. _下载最新版BlueFi固件(202012): http://www.hibottoy.com:8080/static/install/micro/BlueFi_firmware_5.4_202012.uf2
 .. _下载最新版BlueFi固件(202007): http://www.hibottoy.com:8080/static/install/micro/BlueFi_firmware_5.0.uf2
 
-BlueFi是一个持续开发和更新的单板机，建议定期(至少每季度)检查此链接，下载最新版固件，并使用本向导更新固件。
+BlueFi是一个持续开发和更新的单板机，建议定期检查此链接，下载最新版固件，并使用本向导更新固件。
 
 下载最新版固件并保存到自己电脑上备份，默认的BlueFi固件文件名为“BlueFi_firmware_x.x_date.uf2”，其中“x.x”代表当前下载的
 固件版本号，date代表固件生成日期。注意，该文件采用“uf2”格式，扩展名为“.uf2”。请记住保存该文件的文件夹位置。
