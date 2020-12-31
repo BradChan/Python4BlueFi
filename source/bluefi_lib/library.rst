@@ -7,7 +7,7 @@ BlueFi的开源库分为两种版本：1) mpy格式(压缩的二进制脚本格�
 
 ---------------------------------------------
 
-当前版本的BlueFi开源库压缩包的发布日期为：2020-11-2
+当前版本的BlueFi开源库压缩包的发布日期为：2020-12-31
 
 点击此处 `下载最新版BlueFi开源库(mpy格式)压缩包`_  (建议使用这个压缩包，为了节约BlueFi有限的存储空间)
 
@@ -15,8 +15,8 @@ BlueFi的开源库分为两种版本：1) mpy格式(压缩的二进制脚本格�
 
 此处下载的BlueFi开源库的每一个库文件都带有自己的版本编号，文件名中有明确地标注。
 
-.. _下载最新版BlueFi开源库(mpy格式)压缩包: http://www.hibottoy.com:8080/static/install/micro/CircuitPython/HiiBot_BlueFi_CircuitPy/bluefi-circuitpython-library-5.x-mpy-20201102.zip
-.. _下载最新版BlueFi开源库(py源码格式)压缩包: http://www.hibottoy.com:8080/static/install/micro/CircuitPython/HiiBot_BlueFi_CircuitPy/bluefi-circuitpython-library-5.x-py-20201102.zip
+.. _下载最新版BlueFi开源库(mpy格式)压缩包: http://www.hibottoy.com:8080/static/install/micro/CircuitPython/HiiBot_BlueFi_CircuitPy/bluefi-circuitpython-library-5.x-mpy-20201231.zip
+.. _下载最新版BlueFi开源库(py源码格式)压缩包: http://www.hibottoy.com:8080/static/install/micro/CircuitPython/HiiBot_BlueFi_CircuitPy/bluefi-circuitpython-library-5.x-py-20201231.zip
 
 BlueFi是一个持续开发和更新的单板机，建议定期检查此链接，下载最新版开源库压缩包，并使用本向导更新固件。
 
@@ -27,9 +27,28 @@ BlueFi是一个持续开发和更新的单板机，建议定期检查此链接�
 
 .. admonition::  更新说明：
 
+  - (2020.12.31)
+  - 与CircuitPython官网同步更新(2020.12.31)
+  - 增加CANBus(使用MCP2515控制器)接口库(hiibot_mcp2515文件夹)和几个应用示例(在examples文件夹中查找hiibot_mcp2515_can*.py)
+  - 增加NB-IoT(使用SIM7020X模块)接口库(hiibot_sim7020x文件夹)和MQTT的应用示例(在examples文件夹中查找hiibot_sim7020x*.py)
+  - 增加HiiBot IoTs2(使用ESP32-S2)BSP库以及多个应用示例，IoTs2支持WiFi、8MB FlashROM和8MB pSRAM，带有3轴加速度传感器、1.1寸TFT-LCD(135*240点阵)
+  - 增加HiiBot Circle(编程圆)的BSP库以及多个应用示例，Circle带有7个可触摸输入、2个按钮输入、光强度和颜色识别传感器、环境温度传感器、3轴加速度传感器、MEMS数字麦克风(PDM)、10颗可编程彩灯、喇叭等资源
+  - (2020.11.2)
   - 与CircuitPython官网同步更新(2020.11.2)
+  - 增加HiiBot JoyStick接口库，JoyStick带有一个模拟型2D摇杆(x, y)输入、4个按钮、1个振动马达等资源
   - 增加DFRobot的麦昆(maqueen)接口库(hiibot_maqueen.py)和2个应用示例(在examples文件夹中查找maqueen_corral.py和maqueen_trackline.py) 
   - 完善LSM6DS3库版本的兼容问题，Adafruit升级的库(2.1)不支持计步器功能，重新完善
+
+---------------------------------------------
+
+2020-11-2发布的版本
+
+点击 `下载2020-11-2版BlueFi开源库(mpy格式)压缩包`_  (建议使用这个压缩包，为了节约BlueFi有限的存储空间)
+
+点击 `下载2020-11-2版BlueFi开源库(py源码格式)压缩包`_  (打算自行增减或修改BlueFi开源库的高级用户可以使用这个压缩包)
+
+.. _下载2020-11-2版BlueFi开源库(mpy格式)压缩包: http://www.hibottoy.com:8080/static/install/micro/CircuitPython/HiiBot_BlueFi_CircuitPy/bluefi-circuitpython-library-5.x-mpy-20201102.zip
+.. _下载2020-11-2版BlueFi开源库(py源码格式)压缩包: http://www.hibottoy.com:8080/static/install/micro/CircuitPython/HiiBot_BlueFi_CircuitPy/bluefi-circuitpython-library-5.x-py-20201102.zip
 
 ---------------------------------------------
 
