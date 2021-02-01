@@ -547,13 +547,13 @@ BlueFi的正面带有一个集成光传感器
       
     - “左循迹”传感器的状态：ls = car.leftTrackSensor
 
-      - True/1，表示有反射信号
-      - False/0，表示无反射信号
+      - True/1，表示无反射信号(黑线上)
+      - False/0，表示有反射信号(非黑线上)
 
-    - “右循迹”传感器的状态：ls = car.rightTrackSensor
+    - “右循迹”传感器的状态：rs = car.rightTrackSensor
 
-      - True/1，表示有反射信号
-      - False/0，表示无反射信号
+      - True/1，表示无反射信号(黑线上)
+      - False/0，表示有反射信号(非黑线上)
     
   - 麦昆小车的输出控制类：
 
