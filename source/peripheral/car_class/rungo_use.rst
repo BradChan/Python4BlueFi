@@ -31,7 +31,7 @@ BlueFi+RunGo组成智能小车，如下图所示。
 ----------------------------------
 
 使用RunGo小车前，请点击“下载按钮”下载RunGo的Python库文件 
-:download:`hiibot_rungo.py </../../../_static/lib_py/hiibot_rungo.py>` 到本地，
+:download:`hiibot_rungo.py </../../../_static/lib_py/hiibot_rungo.py>`  到本地，
 然后将该文件保存到BlueFi的"/CIRCUITPY/lib/"文件夹中。
 
 注意，请使用USB数据线将BlueFi与你的电脑连接在一起，电脑的资源管理器中出现“CIRCUITPY”磁盘，然后将RunGo的Python库文件复制到"/CIRCUITPY/lib/"文件夹即可。
