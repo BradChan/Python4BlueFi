@@ -133,7 +133,7 @@ RunGo小车就在围栏内随意行驶。准备工作：在白色地面或纸上
 并将RunGo小车放在图案内。图案可以参考下图所示：
 
 .. image::  ../../_static/images/peripheral/rungo_corral.jpg
-  :scale: 25%
+  :scale: 30%
   :align: center
 
 执行下面的示例代码，你会看到RunGo小车在电子围栏内随意地行驶，但始终不会跑出围栏。
