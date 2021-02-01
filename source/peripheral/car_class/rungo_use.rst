@@ -30,18 +30,22 @@ BlueFi+RunGo组成智能小车，如下图所示。
 使用前准备工作：添加RunGo库模块
 ----------------------------------
 
-使用RunGo小车前，请下载RunGo的Python库文件 :download:`hiibot_rungo.py </../../_static/lib_py/hiibot_rungo.py>` ，
-将该文件保存到BlueFi的"/CIRCUITPY/lib/"文件夹中。注意，请使用USB数据线将BlueFi与你的电脑连接在一起，电脑的资源管理器中出现“CIRCUITPY”磁盘，
-然后将RunGo的Python库文件复制到"/CIRCUITPY/lib/"文件夹即可。
+使用RunGo小车前，请点击“下载按钮”下载RunGo的Python库文件 
+:download:`hiibot_rungo.py </../../../_static/lib_py/hiibot_rungo.py>` 到本地，
+然后将该文件保存到BlueFi的"/CIRCUITPY/lib/"文件夹中。
+
+注意，请使用USB数据线将BlueFi与你的电脑连接在一起，电脑的资源管理器中出现“CIRCUITPY”磁盘，然后将RunGo的Python库文件复制到"/CIRCUITPY/lib/"文件夹即可。
+注意，部分BlueFi的lib文件夹中已有hiibot_rungo库文件，请忽略此步骤。检查方法：使用USB数据线将BlueFi与电脑连接，出现CIRCUITPY磁盘后，
+展开"/CIRCUITPY/lib/"文件夹，检查是否已有“hiibot_rungo.py”或“hiibot_rungo.mpy”，其中“py”格式是Python脚本源码库，“mpy”格式是压缩的Python脚本源码库，
+前者是文本格式具有可读性但文件较大，后者是二进制格式无可读性但文件较小。
 
 --------------------------------
 
 让RunGo动起来
 --------------------------------
 
-当你拿到RunGo和
-准备工作做好之后，我们首先让RunGo小车动起来。实现的效果：小车前进一段距离；然后开启右转灯并开始右转，然后关闭右转灯并停止右转；然后再后退
-一段距离；再开启左转灯左转，最后关闭左转灯并停止左转；如此循环。
+当你拿到RunGo和BlueFi之后，并做好前述的准备工作做，我们首先让RunGo小车动起来。
+实现的效果：小车前进一段距离；然后开启右转灯并开始右转，然后关闭右转灯并停止右转；如此循环。
 
 示例程序代码如下：
 
@@ -54,20 +58,12 @@ BlueFi+RunGo组成智能小车，如下图所示。
   carspeed = 80
   while True:
       car.motor(carspeed, carspeed)
-      time.sleep(1.5)
+      time.sleep(0.5)
       car.stop()
       car.rightHeadLED = 1   # turn on right head lamp
       car.motor(carspeed//2, -carspeed//2)
-      time.sleep(1.5)
+      time.sleep(0.65)
       car.rightHeadLED = 0   # turn off right head lamp
-      car.stop()
-      car.motor(-carspeed, -carspeed)
-      time.sleep(1.5)
-      car.stop()
-      car.leftHeadLED = 1    # turn on left head lamp
-      car.motor(-carspeed//2, carspeed//2)
-      time.sleep(1.5)
-      car.leftHeadLED = 0    # turn off left head lamp
       car.stop()
 
 请将上述示例代码保存到BlueFi的/CIRCUITPY/code.py文件，并将BlueFi插入到RunGo小车上，然后打开RunGo小车的电源，
@@ -79,9 +75,148 @@ BlueFi+RunGo组成智能小车，如下图所示。
 
 此外，本示例也展示如何控制RunGo小车的左/右头灯。
 
+--------------------------------
+
+识别地面颜色(色块)
+--------------------------------
+
+RunGo小车的底部有一个颜色识别传感器，可用于识别地面的颜色或色块，有效识别区域是巡线传感器的区域(颜色识别传感器在标注“P2”文字的地方)。
+本示例程序实现的效果：让小车置于白、红、黄、绿、青、蓝或紫色的地面或贴有这些颜色色块之上，按下A按钮后，BlueFi的5颗彩灯将显示对应的地面颜色，
+并在LCD屏幕上显示颜色的名称字符串(White、Red、Yellow、Green、Cyan、Blue或Purple)。
+
+示例程序代码如下：
+
+.. code-block::  python
+  :linenos:
+
+  from hiibot_bluefi.basedio import Button, NeoPixel
+  from hiibot_rungo import RunGo
+  button = Button()
+  rgb = NeoPixel()
+  car = RunGo()
+  rgb.brightness = 0.2
+  rgb.fillPixels((0,0,0))
+  car.stop() # stop motors
+  print("Press Button-A to sense ground color")
+  car.pixels.fill(0)
+  car.pixels.show()
+  while True:
+      button.Update()
+      if button.A_wasPressed:
+          cid = car.groundColorID
+          print(car.groundColor_name[cid])
+          rgb.fillPixels(car.groundColor_list[cid])
 
 
+请将上述示例代码保存到BlueFi的/CIRCUITPY/code.py文件，并将BlueFi插入到RunGo小车上，然后打开RunGo小车的电源，
+每次按下A按钮即可执行一次“地面颜色”识别，并将识别出来的颜色名字字符串显示到LCD屏幕上，同时BlueFi的5颗彩灯也显示出同样的颜色。
 
+上述示例程序非常容易理解。前两行语句是导入Python模块；第3～5行程序是将Button类、NeoPixel类、RunGo类分别实例化为“button”、“rgb”、“car”；
+第6～7行将BlueFi上的5颗彩灯熄灭(即显示黑色)；第8行代码让小车停止。
+在无穷循环程序块中，我们使用“button.Update()”接口检测A按钮是否被按下，如果被按下则开始识别地面颜色并返回颜色识别结果(颜色ID)，
+使用“car.groundColor_name[color_id]”列表返回该颜色ID对应的颜色名称(字符串)并打印到屏幕上，
+然后使用“car.groundColor_list[id]”列表返回该颜色ID对应的颜色的RGB分量值(元组类型)，并让BlueFi的5颗彩灯显示这种颜色。
+
+-------------------------------
+
+电子围栏
+-------------------------------
+
+前面的示例中都没有逻辑的问题，只是简单的顺序执行固定动作，下面我们来实现一个稍微复杂一点的动作效果：地上画个圆作为电子围栏的边界，
+RunGo小车就在围栏内随意行驶。准备工作：在白色地面或纸上贴上宽度大于1公分以上的黑色胶带或不干胶，确保黑色胶带围成一个封闭的图案，
+并将RunGo小车放在图案内。图案可以参考下图所示：
+
+.. image::  ../../_static/images/peripheral/maqueen_corral.jpg
+  :scale: 50%
+  :align: center
+
+执行下面的示例代码，你会看到RunGo小车在电子围栏内随意地行驶，但始终不会跑出围栏。
+
+
+.. code-block::  python
+  :linenos:
+
+  import time
+  from hiibot_bluefi.basedio import Button
+  button = Button()
+  print("I am BlueFi")
+  # import RunGo module from hiibot_rungo.py
+  from hiibot_rungo import RunGo
+  car = RunGo()
+  print("RunGo")
+  # speed=100, 0, forward; 1, backward; 2, rotate-left; 3, rotate-right
+  car.stop() # stop motors
+  print("we do it, press Button-A")
+
+  car.pixels.brightness = 0.5
+  car.pixels[0] = (255,0,0)
+  car.pixels[1] = (0,255,0)
+  car.pixels[2] = (0,0,255)
+  car.pixels.show()
+
+  car.rightHeadLED = 0
+  car.leftHeadLED = 0
+
+  carSpeed_fast = 100
+  carSpeed_slow = 70
+
+  carrun = False
+  while True:
+      button.Update()
+      if button.A_wasPressed:
+          carrun = True
+          print("running")
+      if button.B_wasPressed:
+          car.stop()
+          print("stop")
+          carrun = False
+      lt = car.leftTracker   # left sensor
+      rt = car.rightTracker  # right sensor
+      if carrun:
+          if lt ==1 and rt ==1 :  # dual sensor above back-line
+              car.stop()
+              car.move(1, 0-carSpeed_fast)  # backward
+              time.sleep(0.2)
+              car.stop()
+              car.move(2, carSpeed_fast)  # turn left
+              time.sleep(0.2)
+              car.stop()
+          elif lt ==1 :  # left sensor above back-line only
+              car.stop()
+              car.rightHeadLED = 1
+              car.move(3, carSpeed_fast)  # turn right
+              time.sleep(0.2)
+              car.stop()
+              car.rightHeadLED = 0
+          elif rt ==1 :   # right sensor above back-line only
+              car.stop()
+              car.leftHeadLED = 1
+              car.move(2, carSpeed_fast)  # turn left
+              time.sleep(0.2)
+              car.stop()
+              car.leftHeadLED = 0
+          else: 
+              car.move(0, carSpeed_slow)  # forward
+              time.sleep(0.02)
+      pass
+
+
+将示例程序保存到BlueFi的/CIRCUITPY/code.py文件中，并将BlueFi插入到RunGo小车，打开RunGo小车的电源，
+等待我们的程序正式开始运行后，按下BlueFi的A按钮，并将整个小车放在黑色胶带围成的封闭图案内，
+你将看到RunGo小车始终在围栏内行驶。当你想要让RunGo小车停下时，请按下BlueFi的B按钮即可，或者直接关闭电源。
+
+为什么RunGo小车不会越过黑色胶带围成的“围栏边界”呢？我们使用RunGo小车底部的一对循迹传感器来侦测小车是否到达
+“围栏边界”，如果遇到边界则根据这对传感器的状态来调整行驶方向：如果两个传感器都侦测到黑色边界，则先后退一段距离
+再左转；如果只有左侧传感器侦测到黑色边界则右转；如果右侧传感器侦测到黑色边界则左转；如果传感器都未侦测到黑色边界
+则继续前进。
+
+这是本示例程序的无穷循环程序块中的关键逻辑，或者说这就是实现“电子围栏”效果的关键逻辑。本示例中增加2个按钮做交互
+实现开始行驶和停止行驶的功能，也属于无穷循环程序块的一部分逻辑。
+
+为了达到更好的视觉效果，我们可以使用RunGo小车底盘的3颗彩灯来指示行驶、停车状态：在围栏内行驶期间3颗彩灯的颜色不断地转动；
+当停车时彩灯颜色全部保持白色。
+
+你可以根据本向导底部的接口库介绍来掌握RunGo小车的控制接口，然后设计更加有趣的示例。
 
 
 

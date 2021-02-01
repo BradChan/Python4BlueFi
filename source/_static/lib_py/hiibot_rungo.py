@@ -93,10 +93,10 @@ class RunGo:
         self._rightLightSensor = AnalogIn(board.P3)
         self._leftLightSensor = AnalogIn(board.P4)
         # left and right head-LED: P6--rightHeadLED, P7--leftHeadLED
-        self._leftHeadLED = DigitalInOut(board.P7)
+        self._leftHeadLED = DigitalInOut(board.P6)
         self._leftHeadLED.direction = Direction.OUTPUT
         self._leftHeadLED.value = 0
-        self._rightHeadLED = DigitalInOut(board.P6)
+        self._rightHeadLED = DigitalInOut(board.P7)
         self._rightHeadLED.direction = Direction.OUTPUT
         self._rightHeadLED.value = 0
         # Ultrasonic module (超声波模块):  P8--trig, P12--echo
