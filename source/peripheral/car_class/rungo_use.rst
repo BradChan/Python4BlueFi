@@ -16,7 +16,13 @@
 
 ---------------------------------
 
-BlueFi+RunGo组成智能小车，如下图所示。
+RunGo小车底盘的传感器和分布(示意图)，如下图所示：
+
+.. image::  ../../_static/images/peripheral/rungo_car_sensors_layout.jpg
+  :scale: 40%
+  :align: center
+
+BlueFi+RunGo组成智能小车(实物图)，如下图所示。
 
 .. image::  ../../_static/images/peripheral/rungo_car.jpg
   :scale: 40%
@@ -126,8 +132,8 @@ RunGo小车的底部有一个颜色识别传感器，可用于识别地面的颜
 RunGo小车就在围栏内随意行驶。准备工作：在白色地面或纸上贴上宽度大于1公分以上的黑色胶带或不干胶，确保黑色胶带围成一个封闭的图案，
 并将RunGo小车放在图案内。图案可以参考下图所示：
 
-.. image::  ../../_static/images/peripheral/maqueen_corral.jpg
-  :scale: 50%
+.. image::  ../../_static/images/peripheral/rungo_corral.jpg
+  :scale: 25%
   :align: center
 
 执行下面的示例代码，你会看到RunGo小车在电子围栏内随意地行驶，但始终不会跑出围栏。
