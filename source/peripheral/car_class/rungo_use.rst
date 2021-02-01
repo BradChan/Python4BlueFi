@@ -19,7 +19,7 @@
 BlueFi+RunGo组成智能小车，如下图所示。
 
 .. image::  ../../_static/images/peripheral/rungo_car.jpg
-  :scale: 50%
+  :scale: 40%
   :align: center
 
 与microbit+RunGo组成的智能小车相比，使用BlueFi丰富的传感器你将能实现更多种交互，譬如，BlueFi的姿态传感器可以感知小车的水平或倾角，
@@ -31,7 +31,7 @@ BlueFi+RunGo组成智能小车，如下图所示。
 ----------------------------------
 
 使用RunGo小车前，请点击“下载按钮”下载RunGo的Python库文件 
-:download:`hiibot_rungo.py </../../../_static/lib_py/hiibot_rungo.py>`  到本地，
+:download:`hiibot_rungo.py </../../_static/lib_py/hiibot_rungo.py>`  到本地，
 然后将该文件保存到BlueFi的"/CIRCUITPY/lib/"文件夹中。
 
 注意，请使用USB数据线将BlueFi与你的电脑连接在一起，电脑的资源管理器中出现“CIRCUITPY”磁盘，然后将RunGo的Python库文件复制到"/CIRCUITPY/lib/"文件夹即可。
