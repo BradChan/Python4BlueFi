@@ -236,6 +236,150 @@ AGV(Automatic Guided Vehicle，无人搬运车)小车已经是很多现代车间
 AGV如何实现“沿着规定路线行驶到指定停靠点”呢？有很多种方法可以实现AGV的功能，本向导给出一种循迹的方法。使用循迹
 传感器反馈的状态信号控制RunGo小车运动来模拟AGV。
 
+我们采用地面贴黑色胶带或黑色不干胶来“指定路线”，编程控制RunGo小车沿着该路线行驶(允许弯曲的路线)，到达路线末端后自动
+调头并原路返回。为了更好地理解循迹的程序逻辑，我们先分析下图的三种情况：
+
+.. image::  ../../_static/images/peripheral/rungo_tracking1.jpg
+  :scale: 40%
+  :align: center
+
+根据上图所示，狠容易回答以下问题：如果小车向右偏离路线我们应该如何纠偏呢？向左偏离时又如何纠偏呢？
+此外，当我们达到道路末端时循迹传感器的状态是怎样？如何让RunGo小车绕自身中心调头呢？
+
+.. image::  ../../_static/images/peripheral/rungo_tracking2.jpg
+  :scale: 40%
+  :align: center
+
+简单地分析这几种特殊情况将有助于掌握下面的示例程序中的关键逻辑和代码。本示例的准备工作非常简单，
+使用前示例所用的黑色胶带围成的封闭边界作为本次循迹的“指定路线”。
+
+循迹小车的示例程序如下：
+
+.. code-block::  python
+  :linenos:
+
+  import time
+  import random
+  from hiibot_bluefi.basedio import Button, NeoPixel
+  from hiibot_rungo import RunGo
+  car = RunGo()
+  button = Button()
+  pixels = NeoPixel()
+
+  #  stop car one second
+  car.stop()
+  carspeed = 50
+  start = True
+  colors = [(255,0,0), (0,255,0), (0,0,255)] # R, G, B
+  st = time.monotonic()
+
+  def roundColors():
+      global st
+      if (time.monotonic() - st) < (0.2 if start==True else 0.6):
+          return
+      st = time.monotonic()
+      t=colors[0]
+      colors[0] = colors[1]
+      colors[1] = colors[2]
+      colors[2] = t
+      for ci in range(3):
+          car.pixels[ci] = colors[ci]
+      car.pixels.show()
+
+  def  searchBackLine():
+      global car
+      car.stop()
+      rdir = random.randint(0, 2)
+      if rdir==0:
+          car.move(2, carspeed)
+      else:
+          car.move(3, carspeed)
+      for steps in range(360):
+          time.sleep(0.005)
+          if car.rightTracker or car.leftTracker:
+              car.stop()
+              return True
+      car.stop()
+      return False
+
+  def start_or_stop():
+      global start
+      button.Update()
+      if start and button.B_wasPressed:
+          print("stop")
+          start = False
+          return 2  # stop
+      if not start and button.A_wasPressed:
+          print("start")
+          start = True
+          return 1  # start
+      return 0      # hold the current status
+      
+
+  while True:
+      start_or_stop()
+      sbl = searchBackLine()
+      if sbl and start:
+          print("We Run Go!")
+          while True:
+              start_or_stop()
+              if not start:
+                  car.stop()
+                  time.sleep(0.1)
+                  continue
+              # two sensors is above backline, go on
+              if car.rightTracker and car.leftTracker:
+                  car.motor(carspeed, carspeed)
+              # left sensor is above backline, but right sensor missed backline, thus turn left
+              elif car.leftTracker:
+                  car.motor(carspeed//2, carspeed)
+              # right sensor is above backline, but left sensor missed backline, thus turn right
+              elif car.rightTracker:
+                  car.motor(carspeed, carspeed//2)
+              # two sensors missed backline, thus stop car and search backline
+              else:
+                  car.stop()
+                  print("black line is missing, need to search the black line")
+                  break
+              time.sleep(0.01)
+              roundColors()
+      else:
+          print("failed to search backline")
+          while True:
+              pass
+
+看起来程序代码很长！为了帮助你理解程序语句的作用，请分析下面的流程图，并对照程序代码、执行程序时RunGo小车的行为。
+
+.. image::  ../../_static/images/peripheral/rungo_tracking_flowchart.jpg
+  :scale: 40%
+  :align: center
+
+将上面的示例程序保存到BlueFi的/CIRCUITPY/code.py文件中，并将BlueFi插入到RunGo小车，并打开RunGo小车的电源，
+然后将RunGo小车放在黑色胶带上方，等待我们的程序正式开始运行后，观察程序的执行效果。
+如果你想要让RunGo小车停下来，按下B按钮即可。如果想要RunGo小车继续巡线行驶，按下A按钮即可。
+
+虽然本示例程序看起来很长，我们增加的彩光效果和按钮控制开启/停车等逻辑占用将近一半的代码，真正的循迹控制逻辑只是在嵌套循环的内循环体中。
+
+此外，本示例程序中包含一个容错处理，被定义成子程序searchBackLine。该子程序可以实现：
+当RunGo小车的两个循迹传感器都未检测到“指定路线”的黑色道路时，小车将自动开始绕自身中心旋转，找到黑色道路后再继续沿路行驶。
+如果你未将小车放在黑色道路上方，该容错程序将控制RunGo小车原地打转几圈来尝试找黑色道路，如果尝试几圈都未找到黑线则自动停车。
+
+你也可以试一试如下图所示的“指定路线”，你能预测自己的RunGo小车会如何行驶？
+
+.. image::  ../../_static/images/peripheral/rungo_tracking3.jpg
+  :scale: 40%
+  :align: center
+
+事实上，企业车间的仓库分为原料仓库、半成品仓库、成品仓库等多种，生产工位较多，如何实现多点物料搬运？需要我们去探索，
+下图是多点物料搬运问题的抽象图例，你可以使用黑色胶带或不干胶绘制这些图中的“指定路线”，编程实现沿着这些“指定路线”自动搬运物料的小车。
+
+.. image::  ../../_static/images/peripheral/rungo_tracking4.jpg
+  :scale: 40%
+  :align: center
+
+或许你觉得单纯使用巡线传感器的信息并不足以实现自己的想法，RunGo小车底盘带有颜色识别传感器，可以用来识别地面的颜色，
+如果我们在道路的分叉口的地面贴上一些特殊颜色，譬如红、黄、绿、青、蓝和紫色等，每种颜色代表不同的旋转方向，
+或许实现上图的多点之间货物运输会变得非常简单。动手试一试吧。
 
 -------------------------------
 
@@ -252,7 +396,62 @@ AGV避障
 让RunGo配合你扮演“气功大师”
 --------------------------------
 
-武林高手能隔山打牛，气功大师能用气击倒对手。让RunGo当个“托儿”帮助我们表演气功大师的绝招。
+武林高手能隔山打牛、隔空取物，气功大师能用气击倒对手。本示例的执行效果：让RunGo当个“托儿”帮助我们表演气功大师的绝招。
+气功大师不仅能用手掌“发气”隔空推动RanGo小车后退，还能用手掌隔空“吸引”RunGo小车，其中的奥秘是什么呢？
+
+请注意，本示例程序需要使用超声波传感器，请将超声波传感器模块正确地插在RunGo小车上。
+
+本示例程序的代码如下：
+
+.. code-block::  python
+  :linenos:
+
+  import time
+  from hiibot_bluefi.basedio import Button, NeoPixel
+  from hiibot_rungo import RunGo
+  car = RunGo()
+  button = Button()
+  pixels = NeoPixel()
+  carspeed = 254
+  distance = 6
+  start = False
+  while True:
+      button.Update()
+      if button.A_wasPressed:
+          start = True
+          pixels.fillPixels( (255,255,0) )
+      if button.B_wasPressed:
+          start = False
+          pixels.fillPixels( (0,0,128) )
+      d = car.distance  # cm
+      if start:
+          if d >= 6:
+              s = d-6
+              s = s/60
+              cs = s*255
+              cs = min(40, cs)
+              cs = max(cs, 220)
+              cs = 255-cs 
+              car.moveTime(0, cs, 0.005)
+          elif d<2 or d>400:
+              car.stop()
+              print("too close, or too far!")
+          else:
+              car.moveTime(1, 60, 0.005)
+      else:
+          pass
+
+将示例程序保存到BlueFi的/CIRCUITPY/code.py文件中，并将BlueFi插入到RunGo小车，打开RunGo小车的电源，
+等待我们的程序正式开始运行后，按下BlueFi的A按钮，然后用手掌靠近或远离RunGo小车的超声波，
+观察程序的执行效果是否有“武林高手”、“气功大师”隔空推车、隔空取物等效果。
+
+--------------------------------
+
+帮助RunGo走出“巨石阵”
+--------------------------------
+
+三国演义中诸葛亮在长江边摆的“巨石阵”让诸多敌人有进无出。你能使用今天的科技手段帮助RunGo走出纸杯模拟的“诸葛巨石阵”吗？
+
 
 --------------------------------
 
