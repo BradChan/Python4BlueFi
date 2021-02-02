@@ -412,8 +412,6 @@ AGV避障
   car = RunGo()
   button = Button()
   pixels = NeoPixel()
-  carspeed = 254
-  distance = 6
   start = False
   while True:
       button.Update()
@@ -425,21 +423,22 @@ AGV避障
           pixels.fillPixels( (0,0,128) )
       d = car.distance  # cm
       if start:
-          if d >= 6:
-              s = d-6
+          if d<2 or d>400:
+              car.stop()
+              print("too close, or too far!")
+          elif d >= 12:
+              s = d-10
               s = s/60
               cs = s*255
               cs = min(40, cs)
               cs = max(cs, 220)
               cs = 255-cs 
-              car.moveTime(0, cs, 0.005)
-          elif d<2 or d>400:
-              car.stop()
-              print("too close, or too far!")
+              car.move(0, cs)
+          elif d <= 8:
+              car.move(1, 40)
           else:
-              car.moveTime(1, 60, 0.005)
-      else:
-          pass
+              car.stop()
+          time.sleep(0.005)
 
 将示例程序保存到BlueFi的/CIRCUITPY/code.py文件中，并将BlueFi插入到RunGo小车，打开RunGo小车的电源，
 等待我们的程序正式开始运行后，按下BlueFi的A按钮，然后用手掌靠近或远离RunGo小车的超声波，
