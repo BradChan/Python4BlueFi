@@ -11,8 +11,6 @@ BlueFi开源板本身支持Radio(2.4G RF)、BLE(单模)、WiFi等无线通讯接
 使用BlueFi的40-Pin金手指扩展接口，未来我们还将实现ZigBee、LoRa、4G/5G宽带等无线网络接口，进一步丰富BlueFi的IoT应用。
 
 
-
-
 .. toctree::
    :maxdepth: 1
 

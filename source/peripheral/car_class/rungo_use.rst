@@ -18,7 +18,7 @@
 
 RunGo小车底盘的传感器和分布(示意图)，如下图所示：
 
-.. image::  ../../_static/images/peripheral/rungo_car_sensors_layout.jpg
+.. image::  ../../_static/images/peripheral/rungo_car_sensors_layout_.jpg
   :scale: 40%
   :align: center
 
