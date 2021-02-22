@@ -19,13 +19,13 @@
 RunGo小车底盘的传感器和分布(示意图)，如下图所示：
 
 .. image::  ../../_static/images/peripheral/rungo_car_sensors_layout_.jpg
-  :scale: 40%
+  :scale: 45%
   :align: center
 
 BlueFi+RunGo组成智能小车(实物图)，如下图所示。
 
 .. image::  ../../_static/images/peripheral/rungo_car.jpg
-  :scale: 40%
+  :scale: 45%
   :align: center
 
 与microbit+RunGo组成的智能小车相比，使用BlueFi丰富的传感器你将能实现更多种交互，譬如，BlueFi的姿态传感器可以感知小车的水平或倾角，
