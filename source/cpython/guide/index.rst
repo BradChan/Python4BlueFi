@@ -8,7 +8,7 @@ MicroPython是最早面向嵌入式计算机系统的Python解释器，可以驻
 CircuitPython由著名开源硬件商——Adafruit发起，得到全球开源社区的支持和维护，作为支持嵌入式计算机系统Python解释器的后起之秀，CircuitPython具备很多
 适合小体积、低功耗、有限资源系统的特征，尤其在开放性和安全性方面。
 
-在这一组向导中，我们将帮助你深入了解CircuitPython(CPython)。
+在这一组向导中，我们将帮助你深入了解CircuitPython(CPython)，以及Python的一些基础知识。
 
 
 ---------------------------------
@@ -19,6 +19,7 @@ CircuitPython由著名开源硬件商——Adafruit发起，得到全球开源�
    :maxdepth: 1
 
    whats_cpython.rst
+   struct_datapack.rst
 
 
 
