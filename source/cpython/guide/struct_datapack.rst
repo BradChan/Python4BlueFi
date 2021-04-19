@@ -101,24 +101,24 @@ struct模块支持的打包格式中，字节序/端模式选择字符如下图�
 .. code-block::  python
    :linenos:
 
-  >>> import array
-  >>> help(array.array)
-  object <class 'array'> is of type type
-    append -- <function>
-    extend -- <function>
-  >>> data = array.array('I', [0]*5)
-  >>> data
-  array('I', [0, 0, 0, 0, 0])
-  >>> sampleData = array.array('H', [])
-  >>> len(sampleData)
-  0
-  >>> sampleData.append(65535)
-  >>> sampleData
-  array('H', [65535])
-  >>> sampleData.append(65537)
-  Traceback (most recent call last):
-    File "<stdin>", line 1, in <module>
-  OverflowError: value must fit in 2 byte(s)
+    >>> import array
+    >>> help(array.array)
+    object <class 'array'> is of type type
+      append -- <function>
+      extend -- <function>
+    >>> data = array.array('I', [0]*5)
+    >>> data
+    array('I', [0, 0, 0, 0, 0])
+    >>> sampleData = array.array('H', [])
+    >>> len(sampleData)
+    0
+    >>> sampleData.append(65535)
+    >>> sampleData
+    array('H', [65535])
+    >>> sampleData.append(65537)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    OverflowError: value must fit in 2 byte(s)
 
 可以看出，BlueFi的Python解释器的“array”类仅有2种接口函数：append和extend，从这两个接口的名称即可知道他们分别为“向数组添加一项”、
 “用指定的数组扩展原数组”。使用Python语言定义/声明一个数组时，由于数组中各项数据单元的字长都是相同的，
@@ -134,20 +134,20 @@ struct模块支持的打包格式中，字节序/端模式选择字符如下图�
 .. code-block::  python
    :linenos:
 
-  import time
-  import array
-  import board
-  import audiobusio
-  mic = audiobusio.PDMIn(
-          board.MICROPHONE_CLOCK, board.MICROPHONE_DATA,
-          sample_rate=16000,   # 16KHz (=16000 sample-dots/second)
-          bit_depth=16)        # 16-bit wordsize
-  samples = array.array("H", [0] * 160)  # sample data of 10ms
+    import time
+    import array
+    import board
+    import audiobusio
+    mic = audiobusio.PDMIn(
+            board.MICROPHONE_CLOCK, board.MICROPHONE_DATA,
+            sample_rate=16000,   # 16KHz (=16000 sample-dots/second)
+            bit_depth=16)        # 16-bit wordsize
+    samples = array.array("H", [0] * 160)  # sample data of 10ms
 
-  while True:
-      mic.record(samples, len(samples))
-      print( samples )
-      time.sleep(0.5)
+    while True:
+        mic.record(samples, len(samples))
+        print( samples )
+        time.sleep(0.5)
 
 上面示例程序中，前4行分别导入4个库模块，包括“array”和“audiobusio”；第5～8行(实际是一个语句)声明一个麦克风，
 第6行指定连接麦克风的2个引脚(这是BlueFi的固定用法)，第7和8行分别指定麦克风的采样频率和采样数据字长；
