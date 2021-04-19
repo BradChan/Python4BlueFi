@@ -1,6 +1,6 @@
-==============================
-struct: 处理C语言类型数据的模块
-==============================
+=====================================
+struct和array: 处理C语言类型数据的模块
+=====================================
 
 熟悉C/C++编程语言的程序员在处理网络(如串口、RS485、CAN、Ethernet、WiFi等)数据流(data-stream)时异常地从容，
 由于C/C++编程语言的基础数据类型很容易处理格式化的数据，当使用Python编程语言处理结构化的数据流时就显得费事。
@@ -91,11 +91,82 @@ struct模块支持的打包格式中，字节序/端模式选择字符如下图�
 如果Python系统中需要将某年某月某日某时某分某秒测得的环境温度(范围：-75~+75摄氏度)等信息打包成数据流从网络接口发送出去，
 应该选择使用什么样的格式化字符串呢？
 
+----------------------------
+
+使用struct模块的“pack”和“unpack”等接口可以将多个不同字长的数据打包或解包，对于相同字长的多个数据单元的打包和解包操作就简单很多。
+在C/C++语言中，相同字长的多个数据单元被保存在一片地址连续的存储单元中，程序中将这些数据单元总称为“数组”，Python也支持数组，
+使用USB数据线将BlueFi连接到电脑，然后打开MU编辑器的控制台，强制让BlueFi进入REPL模式，然后输入命令行导入“array”模块，
+并查看该模块支持的接口，如下：
+
+.. code-block::  python
+   :linenos:
+
+  >>> import array
+  >>> help(array.array)
+  object <class 'array'> is of type type
+    append -- <function>
+    extend -- <function>
+  >>> data = array.array('I', [0]*5)
+  >>> data
+  array('I', [0, 0, 0, 0, 0])
+  >>> sampleData = array.array('H', [])
+  >>> len(sampleData)
+  0
+  >>> sampleData.append(65535)
+  >>> sampleData
+  array('H', [65535])
+  >>> sampleData.append(65537)
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  OverflowError: value must fit in 2 byte(s)
+
+可以看出，BlueFi的Python解释器的“array”类仅有2种接口函数：append和extend，从这两个接口的名称即可知道他们分别为“向数组添加一项”、
+“用指定的数组扩展原数组”。使用Python语言定义/声明一个数组时，由于数组中各项数据单元的字长都是相同的，
+用来指定数据类型和字长的格式化字符串仅需要一个字符，其规则与前面“struct”的打包字符完全相同。“struct”模块用于通讯接口的数据打包与解包，
+那么Python的“array”的使用场景有哪些呢？
+
+数据采集和处理单元，譬如声音数据的采样和FFT变换处理。绝大多数的声音采样以固定的采样频率和分辨率(单采样点数据的字长)，
+这是时域操作，保存时域采样结果最佳数据集就是数组，根据采样时间和采样频率可以确定采样点个数，即数组的长度是确定的。
+其他数据采集，譬如IMU(惯性测量单元)、环境温湿度检测单元等都有相似的工作机制，“array”非常适合这些场景。
+
+使用BlueFi的数字MEMS麦克风组件，我们用下面的示例代码可以采样声音信号并输出到屏幕上：
+
+.. code-block::  python
+   :linenos:
+
+  import time
+  import array
+  import board
+  import audiobusio
+  mic = audiobusio.PDMIn(
+          board.MICROPHONE_CLOCK, board.MICROPHONE_DATA,
+          sample_rate=16000,   # 16KHz (=16000 sample-dots/second)
+          bit_depth=16)        # 16-bit wordsize
+  samples = array.array("H", [0] * 160)  # sample data of 10ms
+
+  while True:
+      mic.record(samples, len(samples))
+      print( samples )
+      time.sleep(0.5)
+
+上面示例程序中，前4行分别导入4个库模块，包括“array”和“audiobusio”；第5～8行(实际是一个语句)声明一个麦克风，
+第6行指定连接麦克风的2个引脚(这是BlueFi的固定用法)，第7和8行分别指定麦克风的采样频率和采样数据字长；
+第9行声明一个数组“samples”，该数组共有160项，每一项都是16位无符号的数据，很显然“array.array(p1, p2)”参数p1必须与第8行的麦克风参数一致，
+数组的项数决定我们每次采样的时长(根据采样频率来确定)；程序的无穷循环中首先调用麦克风的“record”接口获取采样数据，
+即更新数组“samples”，然后将这些数据直接打印到屏幕上。
+
+----------------------------
+
+“array”和“struct”都是Python语言中专门处理C/C++数据类型的特殊模块，“array”机制仅适合相同字长的数据集，
+“struct”根据打包格式字符串能够处理多种字长的数据组成的数据集。在计算机硬件的层面上，数组和结构体型等数据集被保存在一片地址连续的存储空间内，
+如此保存的数据集的访问速度较快。
+
 
 
 .. admonition:: 
   总结：
 
     - struct
+    - array
     - data type
 
